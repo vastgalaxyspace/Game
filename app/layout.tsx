@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Deadpool III Cinematic Showcase",
-  description: "A cinematic Three.js model showcase using the provided GLB asset."
+  title: "Mukta Game & Development",
+  description: "A Blender + Unity powered studio crafting games, AR/VR apps, simulations, and interactive 3D experiences."
 };
 
 export default function RootLayout({
@@ -13,7 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="showcase-shell">
+          <Header />
+          {children}
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }

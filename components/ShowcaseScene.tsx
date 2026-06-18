@@ -34,8 +34,8 @@ export function ShowcaseScene({ autoRotate, animationMode, zoomSignal }: Showcas
         camera={{ position: [4.8, 2.2, 6.8], fov: 38, near: 0.1, far: 100 }}
         gl={{ antialias: true, alpha: true }}
       >
-        <color attach="background" args={["#030305"]} />
-        <fog attach="fog" args={["#030305", 8, 18]} />
+        <color attach="background" args={["#f5f5f7"]} />
+        <fog attach="fog" args={["#f5f5f7", 8, 18]} />
         <Suspense fallback={<LoadingLabel />}>
           <CinematicCameraRig zoomSignal={zoomSignal} />
           <CinematicLights />
