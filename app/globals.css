@@ -46,9 +46,8 @@ a {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 70% 38%, rgba(227, 0, 11, 0.1), transparent 25rem),
-    radial-gradient(circle at 20% 76%, rgba(100, 110, 130, 0.08), transparent 22rem),
-    linear-gradient(115deg, #f0f0f5 0%, #ffffff 48%, #f0f0f5 100%);
+    radial-gradient(circle at 62% 28%, rgba(210, 222, 232, 0.72), transparent 28rem),
+    linear-gradient(115deg, #f2f3f5 0%, #ffffff 48%, #e7e9ed 100%);
 }
 
 .showcase-shell::before {
@@ -58,38 +57,33 @@ a {
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(90deg, rgba(245, 245, 247, 0.75), transparent 32%, transparent 68%, rgba(245, 245, 247, 0.8)),
-    linear-gradient(0deg, rgba(245, 245, 247, 0.65), transparent 35%, rgba(245, 245, 247, 0.4));
+    linear-gradient(90deg, rgba(245, 246, 248, 0.56), rgba(245, 246, 248, 0.12) 35%, rgba(245, 246, 248, 0.04) 62%, rgba(245, 246, 248, 0.22)),
+    linear-gradient(0deg, rgba(245, 246, 248, 0.46), transparent 45%, rgba(245, 246, 248, 0.12));
 }
 
 .hero-section {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-}
-
-.title-backdrop {
-  position: absolute;
-  top: 10vh;
-  left: 50%;
-  z-index: 0;
-  width: min(92vw, 1180px);
-  color: rgba(0, 0, 0, 0.06);
-  font-size: clamp(4rem, 14vw, 12rem);
-  font-weight: 900;
-  line-height: 0.86;
-  letter-spacing: 0;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 0 0 42px rgba(227, 0, 11, 0.1);
-  white-space: nowrap;
-  will-change: transform, opacity;
+  background: #f5f6f8;
 }
 
 .scene-canvas {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  filter: brightness(1.02) contrast(1.04) saturate(1);
 }
 
 .site-header {
@@ -251,6 +245,7 @@ a {
   display: grid;
   gap: 0.1rem;
   margin: 0;
+  color: #07080b;
   font-size: clamp(3.8rem, 6vw, 5rem);
   font-weight: 950;
   line-height: 0.88;
@@ -265,7 +260,7 @@ a {
 .hero-copy p:not(.hero-kicker) {
   max-width: 30rem;
   margin: 1.25rem 0 0;
-  color: #a8abb6;
+  color: #4d5260;
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -280,7 +275,7 @@ a {
 .button-secondary {
   border: 1px solid rgba(227, 0, 11, 0.76);
   color: #0a0a0f;
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.62);
 }
 
 .button-secondary:hover {
@@ -367,7 +362,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 0.55rem;
-  color: var(--muted);
+  color: #555770;
   font-size: 0.66rem;
   font-weight: 900;
   letter-spacing: 0.2em;
@@ -742,11 +737,6 @@ a {
 
   .hero-section {
     min-height: 112vh;
-  }
-
-  .title-backdrop {
-    top: 15vh;
-    font-size: clamp(3.4rem, 15vw, 7rem);
   }
 
   .hero-copy {

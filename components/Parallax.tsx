@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ElementType } from "react";
 
 /**
  * Hook that returns a scroll progress value (0–1) for an element
@@ -125,7 +126,7 @@ type ParallaxChildProps = {
   className?: string;
   style?: React.CSSProperties;
   speed?: number;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
 };
 
 /**
@@ -142,7 +143,6 @@ export function ParallaxLayer({
   const y = speed * (progress - 0.5) * -120;
 
   return (
-    // @ts-ignore – dynamic tag
     <Tag
       ref={ref}
       className={className}

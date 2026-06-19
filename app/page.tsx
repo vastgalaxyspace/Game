@@ -1,6 +1,5 @@
 "use client";
 
-import { ShowcaseScene } from "@/components/ShowcaseScene";
 import { ParallaxSection, ParallaxLayer, useScrollY } from "@/components/Parallax";
 import Link from "next/link";
 
@@ -10,7 +9,6 @@ export default function Home() {
   // Hero parallax values driven by raw scroll
   const heroOpacity = Math.max(0, 1 - scrollY / 700);
   const heroCopyY = scrollY * 0.25;
-  const backdropY = scrollY * 0.4;
   const sceneY = scrollY * 0.15;
 
   return (
@@ -18,25 +16,21 @@ export default function Home() {
       {/* ─── HERO ─── */}
       <section className="hero-section" aria-label="Mukta Game and Development">
         <div
-          className="title-backdrop"
-          aria-hidden="true"
-          style={{
-            transform: `translateX(-50%) translateY(${backdropY}px)`,
-            opacity: heroOpacity,
-            willChange: "transform, opacity",
-          }}
-        >
-          MUKTA
-        </div>
-
-        <div
           className="scene-canvas"
           style={{
             transform: `translateY(${sceneY}px)`,
             willChange: "transform",
           }}
         >
-          <ShowcaseScene autoRotate={true} animationMode="idle" zoomSignal={0} />
+          <video
+            className="hero-video"
+            src="/video/create_video_for_this_backgrou.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          />
         </div>
 
         <div
