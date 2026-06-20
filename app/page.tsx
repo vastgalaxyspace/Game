@@ -24,7 +24,7 @@ export default function Home() {
         >
           <video
             className="hero-video"
-            src="/video/create_video_for_this_backgrou.mp4"
+            src="/video/ll.mp4"
             autoPlay
             muted
             loop
@@ -80,9 +80,9 @@ export default function Home() {
         style={{
           position: "relative",
           zIndex: 2,
-          background: "#fff",
-          borderTop: "1px solid rgba(0,0,0,0.08)",
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
+          background: "var(--surface)",
+          borderTop: "1px solid var(--line)",
+          borderBottom: "1px solid var(--line)",
           padding: "2.5rem 5rem",
           display: "flex",
           justifyContent: "space-around",
@@ -101,7 +101,7 @@ export default function Home() {
               style={{
                 fontSize: "2.8rem",
                 fontWeight: 950,
-                color: "var(--red)",
+                color: "var(--accent)",
               }}
             >
               {stat.number}
@@ -112,7 +112,7 @@ export default function Home() {
                 fontWeight: 800,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
-                color: "#555770",
+                color: "var(--text-secondary)",
               }}
             >
               {stat.label}
@@ -129,13 +129,13 @@ export default function Home() {
           position: "relative",
           zIndex: 2,
           padding: "5rem 5rem",
-          background: "#f5f5f7",
+          background: "var(--bg-dark)",
         }}
       >
         <ParallaxLayer speed={0.1} style={{ textAlign: "center", marginBottom: "2.5rem" }}>
           <p
             style={{
-              color: "var(--red)",
+              color: "var(--accent)",
               fontWeight: 900,
               fontSize: "0.78rem",
               letterSpacing: "0.16em",
@@ -150,6 +150,7 @@ export default function Home() {
               fontSize: "clamp(2rem,5vw,3.5rem)",
               fontWeight: 950,
               lineHeight: 0.92,
+              color: "var(--text-primary)",
             }}
           >
             OUR CORE EXPERTISE
@@ -184,17 +185,18 @@ export default function Home() {
             <div
               key={card.title}
               style={{
-                background: "#fff",
-                border: "1px solid rgba(0,0,0,0.08)",
-                borderBottom: "3px solid var(--red)",
+                background: "var(--surface)",
+                border: "1px solid var(--line)",
+                borderBottom: "3px solid var(--accent)",
                 padding: "2rem 1.5rem",
+                borderRadius: "var(--radius-sm)",
                 transition: "transform 180ms ease, box-shadow 180ms ease",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.transform =
                   "translateY(-6px)";
                 (e.currentTarget as HTMLDivElement).style.boxShadow =
-                  "0 20px 50px rgba(227,0,11,0.1)";
+                  "0 20px 50px rgba(227,0,11,0.15)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLDivElement).style.transform =
@@ -209,6 +211,7 @@ export default function Home() {
                   fontWeight: 900,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
+                  color: "var(--text-primary)",
                 }}
               >
                 {card.title}
@@ -216,7 +219,7 @@ export default function Home() {
               <p
                 style={{
                   margin: "0 0 1.25rem",
-                  color: "#555770",
+                  color: "var(--text-secondary)",
                   lineHeight: 1.65,
                 }}
               >
@@ -225,7 +228,7 @@ export default function Home() {
               <Link
                 href={card.link}
                 style={{
-                  color: "var(--red)",
+                  color: "var(--accent)",
                   fontWeight: 900,
                   fontSize: "0.85rem",
                   letterSpacing: "0.05em",
@@ -247,13 +250,13 @@ export default function Home() {
           position: "relative",
           zIndex: 2,
           padding: "5rem 5rem",
-          background: "#fff",
+          background: "var(--bg-dark)",
         }}
       >
         <ParallaxLayer speed={0.12} style={{ textAlign: "center", marginBottom: "2.5rem" }}>
           <p
             style={{
-              color: "var(--red)",
+              color: "var(--accent)",
               fontWeight: 900,
               fontSize: "0.78rem",
               letterSpacing: "0.16em",
@@ -268,6 +271,7 @@ export default function Home() {
               fontSize: "clamp(2rem,5vw,3.5rem)",
               fontWeight: 950,
               lineHeight: 0.92,
+              color: "var(--text-primary)",
             }}
           >
             FEATURED WORK
@@ -292,17 +296,19 @@ export default function Home() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
+              borderRadius: "var(--radius)",
             }}
           >
             <span
               style={{
-                background: "var(--red)",
+                background: "var(--accent)",
                 color: "#fff",
                 fontSize: "0.7rem",
                 fontWeight: 900,
                 padding: "0.36rem 0.55rem",
                 alignSelf: "flex-start",
                 marginBottom: "0.75rem",
+                borderRadius: "var(--radius-sm)",
               }}
             >
               Game
@@ -328,7 +334,7 @@ export default function Home() {
             </p>
             <Link
               href="/contact"
-              style={{ color: "var(--red)", fontWeight: 900 }}
+              style={{ color: "var(--accent)", fontWeight: 900 }}
             >
               View Project →
             </Link>
@@ -363,17 +369,19 @@ export default function Home() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-end",
+                  borderRadius: "var(--radius)",
                 }}
               >
                 <span
                   style={{
-                    background: "var(--red)",
+                    background: "var(--accent)",
                     color: "#fff",
                     fontSize: "0.7rem",
                     fontWeight: 900,
                     padding: "0.3rem 0.5rem",
                     alignSelf: "flex-start",
                     marginBottom: "0.6rem",
+                    borderRadius: "var(--radius-sm)",
                   }}
                 >
                   {p.cat}
@@ -401,7 +409,7 @@ export default function Home() {
                 <Link
                   href="/contact"
                   style={{
-                    color: "var(--red)",
+                    color: "var(--accent)",
                     fontWeight: 900,
                     fontSize: "0.85rem",
                   }}
@@ -427,7 +435,7 @@ export default function Home() {
           position: "relative",
           zIndex: 2,
           padding: "5rem 5rem",
-          background: "#f5f5f7",
+          background: "var(--surface)",
         }}
       >
         <div
@@ -443,7 +451,7 @@ export default function Home() {
           <ParallaxLayer speed={0.08}>
             <p
               style={{
-                color: "var(--red)",
+                color: "var(--accent)",
                 fontWeight: 900,
                 fontSize: "0.78rem",
                 letterSpacing: "0.16em",
@@ -459,15 +467,16 @@ export default function Home() {
                 fontSize: "clamp(2rem,4vw,3rem)",
                 fontWeight: 950,
                 lineHeight: 0.92,
+                color: "var(--text-primary)",
               }}
             >
               BLENDER + UNITY.
               <br />
-              <span style={{ color: "var(--red)" }}>END TO END.</span>
+              <span style={{ color: "var(--accent)" }}>END TO END.</span>
             </h2>
             <p
               style={{
-                color: "#555770",
+                color: "var(--text-secondary)",
                 lineHeight: 1.7,
                 marginBottom: "1.5rem",
               }}
@@ -504,18 +513,7 @@ export default function Home() {
                 desc: "Updates, optimization, and feature additions.",
               },
             ].map((item) => (
-              <div
-                key={item.title}
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                  alignItems: "flex-start",
-                  padding: "1rem",
-                  background: "#fff",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  borderLeft: "3px solid var(--red)",
-                }}
-              >
+              <div key={item.title} className="why-item">
                 <div>
                   <h4
                     style={{
@@ -524,6 +522,7 @@ export default function Home() {
                       fontWeight: 900,
                       textTransform: "uppercase",
                       letterSpacing: "0.05em",
+                      color: "var(--text-primary)",
                     }}
                   >
                     {item.title}
@@ -531,7 +530,7 @@ export default function Home() {
                   <p
                     style={{
                       margin: 0,
-                      color: "#555770",
+                      color: "var(--text-secondary)",
                       fontSize: "0.88rem",
                       lineHeight: 1.6,
                     }}
@@ -545,6 +544,119 @@ export default function Home() {
         </div>
       </ParallaxSection>
 
+      {/* ─── TESTIMONIALS ─── */}
+      <ParallaxSection
+        speed={0.06}
+        slideDistance={45}
+        style={{
+          position: "relative",
+          zIndex: 2,
+          padding: "5rem 5rem",
+          background: "var(--bg-dark)",
+        }}
+      >
+        <ParallaxLayer speed={0.1} style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+          <p
+            style={{
+              color: "var(--accent)",
+              fontWeight: 900,
+              fontSize: "0.78rem",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+            }}
+          >
+            Testimonials
+          </p>
+          <h2
+            style={{
+              margin: 0,
+              fontSize: "clamp(2rem,5vw,3.5rem)",
+              fontWeight: 950,
+              lineHeight: 0.92,
+              color: "var(--text-primary)",
+            }}
+          >
+            WHAT CLIENTS SAY
+          </h2>
+        </ParallaxLayer>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1.5rem",
+            maxWidth: "1180px",
+            margin: "0 auto",
+          }}
+        >
+          {[
+            {
+              quote:
+                "Mukta transformed our concept into a stunning 3D experience. The attention to detail was extraordinary.",
+              name: "Rahul Sharma",
+              role: "CEO at TechVista",
+            },
+            {
+              quote:
+                "Their VR training module reduced our onboarding time by 40%. Exceptional work from concept to delivery.",
+              name: "Priya Patel",
+              role: "Director at IndusTrain",
+            },
+            {
+              quote:
+                "The product visualization they built increased our conversion rate by 60%. True professionals.",
+              name: "Amit Kumar",
+              role: "Founder at DesignPro",
+            },
+          ].map((t) => (
+            <div key={t.name} className="glass-card" style={{ padding: "2rem 1.5rem" }}>
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                style={{ marginBottom: "1rem", opacity: 0.3 }}
+              >
+                <path
+                  d="M11 7H7a4 4 0 0 0-4 4v1h4a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5a6 6 0 0 1 6-6h3v2Zm11 0h-4a4 4 0 0 0-4 4v1h4a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-5a6 6 0 0 1 6-6h3v2Z"
+                  fill="var(--accent)"
+                />
+              </svg>
+              <p
+                style={{
+                  color: "var(--text-secondary)",
+                  lineHeight: 1.7,
+                  margin: "0 0 1.5rem",
+                  fontSize: "0.95rem",
+                  fontStyle: "italic",
+                }}
+              >
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <p
+                style={{
+                  margin: "0 0 0.15rem",
+                  color: "var(--text-primary)",
+                  fontWeight: 800,
+                  fontSize: "0.95rem",
+                }}
+              >
+                {t.name}
+              </p>
+              <p
+                style={{
+                  margin: 0,
+                  color: "var(--accent)",
+                  fontSize: "0.8rem",
+                  fontWeight: 600,
+                }}
+              >
+                {t.role}
+              </p>
+            </div>
+          ))}
+        </div>
+      </ParallaxSection>
+
       {/* ─── CTA STRIP ─── */}
       <ParallaxSection
         speed={0.04}
@@ -553,7 +665,7 @@ export default function Home() {
           position: "relative",
           zIndex: 2,
           padding: "4rem 5rem",
-          background: "var(--red)",
+          background: "var(--accent)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -591,12 +703,13 @@ export default function Home() {
             justifyContent: "center",
             minHeight: "3rem",
             padding: "0 2rem",
-            background: "#0a0a0f",
+            background: "var(--bg-dark)",
             color: "#fff",
             fontWeight: 900,
             fontSize: "0.95rem",
             textDecoration: "none",
             whiteSpace: "nowrap",
+            borderRadius: "var(--radius-sm)",
           }}
         >
           START A PROJECT →
