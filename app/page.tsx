@@ -12,21 +12,19 @@ export default function Home() {
   return (
     <div style={{ width: "100%", height: "100%", background: "var(--bg-dark)" }}>
       <Parallax ref={parallax} pages={8.5} style={{ top: "0", left: "0" }}>
-        
+
         {/* ─── HERO BACKGROUND ─── */}
         <ParallaxLayer offset={0} speed={0} factor={1.2}>
-          <div className="scene-canvas" style={{ width: "100%", height: "100%" }}>
-            <video
-              className="hero-video"
-              src="/video/ll.mp4"
-              poster="/video/poster.png"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-              style={{ opacity: 0.6 }}
-            />
+          <div className="scene-canvas" style={{ width: "100%", height: "100%", pointerEvents: "auto" }}>
+            <div className="sketchfab-embed-wrapper" style={{ width: "100%", height: "100%", opacity: 0.7, background: "black", overflow: "hidden", position: "relative" }}>
+              <iframe
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                src="https://sketchfab.com/models/0d9286ebb8cc426e993e1d398b874a34/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_animations=0&ui_theme=light&dnt=1&transparent=1"
+                style={{ width: "110%", height: "115%", position: "absolute", top: "-7.5%", left: "-5%" }}
+              />
+            </div>
           </div>
         </ParallaxLayer>
 
@@ -114,7 +112,7 @@ export default function Home() {
                 OUR CORE EXPERTISE
               </h2>
             </div>
-            
+
             <div className="home-expertise-grid">
               {[
                 {
@@ -145,11 +143,11 @@ export default function Home() {
 
         {/* WHAT WE DO: FLOATING ICONS */}
         <ParallaxLayer offset={2.9} speed={0.5} style={{ pointerEvents: "none" }}>
-            <div style={{ position: "absolute", left: "15%", top: "10%", opacity: 0.2, color: "var(--accent)" }}>
-                <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                </svg>
-            </div>
+          <div style={{ position: "absolute", left: "15%", top: "10%", opacity: 0.2, color: "var(--accent)" }}>
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            </svg>
+          </div>
         </ParallaxLayer>
 
         {/* ─── PORTFOLIO ─── */}
@@ -163,7 +161,7 @@ export default function Home() {
                 FEATURED WORK
               </h2>
             </div>
-            
+
             <div className="featured-grid">
               <div className="featured-card featured-card--big">
                 <span className="featured-badge">Game</span>
@@ -193,7 +191,7 @@ export default function Home() {
 
         {/* PORTFOLIO FOREGROUND ELEMENT */}
         <ParallaxLayer offset={4.5} speed={0.4} style={{ pointerEvents: "none" }}>
-            <div style={{ width: "200px", height: "200px", background: "radial-gradient(circle, var(--accent-glow), transparent 70%)", position: "absolute", right: "10%", top: "40%" }} />
+          <div style={{ width: "200px", height: "200px", background: "radial-gradient(circle, var(--accent-glow), transparent 70%)", position: "absolute", right: "10%", top: "40%" }} />
         </ParallaxLayer>
 
         {/* ─── WHY CHOOSE US ─── */}
@@ -231,7 +229,7 @@ export default function Home() {
 
         {/* WHY CHOOSE US BACKGROUND SHADOW */}
         <ParallaxLayer offset={5.8} speed={0.05} style={{ pointerEvents: "none", zIndex: -1 }}>
-             <div style={{ position: "absolute", left: "-10%", top: "20%", width: "50%", height: "80%", background: "radial-gradient(circle, rgba(227,0,11,0.05), transparent 70%)" }} />
+          <div style={{ position: "absolute", left: "-10%", top: "20%", width: "50%", height: "80%", background: "radial-gradient(circle, rgba(227,0,11,0.05), transparent 70%)" }} />
         </ParallaxLayer>
 
         {/* ─── TESTIMONIALS ─── */}
@@ -271,9 +269,9 @@ export default function Home() {
 
         {/* TESTIMONIALS PARALLAX TEXT */}
         <ParallaxLayer offset={7} speed={0.6} style={{ pointerEvents: "none" }}>
-            <div style={{ position: "absolute", left: "-5%", whiteSpace: "nowrap", fontSize: "15vw", fontWeight: 900, color: "rgba(255,255,255,0.02)" }}>
-                CLIENT SUCCESS
-            </div>
+          <div style={{ position: "absolute", left: "-5%", whiteSpace: "nowrap", fontSize: "15vw", fontWeight: 900, color: "rgba(255,255,255,0.02)" }}>
+            CLIENT SUCCESS
+          </div>
         </ParallaxLayer>
 
         {/* ─── CTA ─── */}
