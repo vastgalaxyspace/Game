@@ -3,6 +3,7 @@
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { ShowcaseReel } from "@/components/ShowcaseReel";
 import { Footer } from "@/components/Footer";
+import { CustomSketchfabViewer } from "@/components/CustomSketchfabViewer";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -17,13 +18,7 @@ export default function Home() {
         <ParallaxLayer offset={0} speed={0} factor={1.2}>
           <div className="scene-canvas" style={{ width: "100%", height: "100%", pointerEvents: "auto" }}>
             <div className="sketchfab-embed-wrapper" style={{ width: "100%", height: "100%", opacity: 0.7, background: "black", overflow: "hidden", position: "relative" }}>
-              <iframe
-                frameBorder="0"
-                allowFullScreen
-                allow="autoplay; fullscreen; xr-spatial-tracking"
-                src="https://sketchfab.com/models/0d9286ebb8cc426e993e1d398b874a34/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0&ui_help=0&ui_settings=0&ui_vr=0&ui_fullscreen=0&ui_animations=0&ui_theme=light&dnt=1&transparent=1"
-                style={{ width: "110%", height: "115%", position: "absolute", top: "-7.5%", left: "-5%" }}
-              />
+              <CustomSketchfabViewer />
             </div>
           </div>
         </ParallaxLayer>
