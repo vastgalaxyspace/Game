@@ -1062,7 +1062,83 @@ textarea {
 }
 
 /* ═══════════════════════════════════════════
-   CONTACT PAGE
+   CONTACT PAGE – PARALLAX & VIDEO BG
+   ═══════════════════════════════════════════ */
+
+/* Wrapper takes full viewport */
+.parallax-contact-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
+.parallax-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Video Background ── */
+.parallax-video-layer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.contact-video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(8, 8, 16, 0.7) 0%,
+      rgba(8, 8, 16, 0.5) 30%,
+      rgba(8, 8, 16, 0.55) 60%,
+      rgba(8, 8, 16, 0.85) 100%
+    );
+  z-index: 1;
+}
+
+/* ── Glassmorphism Card Override ── */
+.contact-glass-card {
+  background: rgba(18, 18, 30, 0.65) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.contact-glass-card:hover {
+  border-color: rgba(227, 0, 11, 0.3) !important;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Make page sections transparent inside parallax so video shows through ── */
+.parallax-contact-wrapper .page-hero {
+  background: transparent;
+}
+
+.parallax-contact-wrapper .page-hero::before {
+  opacity: 0.15;
+}
+
+.parallax-contact-wrapper .content-section {
+  background: transparent !important;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT PAGE – FORM & INFO STYLES
    ═══════════════════════════════════════════ */
 .contact-layout {
   display: grid;
