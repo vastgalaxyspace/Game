@@ -2,19 +2,40 @@
 
 import { useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
+import { usePathname } from "next/navigation";
 
 const SPLASH_FADE_DURATION_MS = 900;
 
 export function SplashScreen() {
+  const pathname = usePathname();
   const { active, progress } = useProgress();
+  const [videoStarted, setVideoStarted] = useState(false);
   const [showText, setShowText] = useState(false);
   const [showSubText, setShowSubText] = useState(false);
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
+  const [heroModelReady, setHeroModelReady] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [isRemoved, setIsRemoved] = useState(false);
 
-  // Timed text reveals
   useEffect(() => {
+    const splashWindow = window as Window & { __muktaHeroModelReady?: boolean };
+
+    if (splashWindow.__muktaHeroModelReady) {
+      setHeroModelReady(true);
+    }
+
+    const handleHeroModelReady = () => setHeroModelReady(true);
+    window.addEventListener("mukta:hero-model-ready", handleHeroModelReady);
+
+    return () => window.removeEventListener("mukta:hero-model-ready", handleHeroModelReady);
+  }, []);
+
+  // Timed text reveals start from actual video playback, not component mount.
+  useEffect(() => {
+    if (!videoStarted) {
+      return;
+    }
+
     const t1 = setTimeout(() => setShowText(true), 2000);
     const t2 = setTimeout(() => setShowSubText(true), 3200);
     const t3 = setTimeout(() => setMinTimeElapsed(true), 5000);
@@ -23,11 +44,14 @@ export function SplashScreen() {
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, []);
+  }, [videoStarted]);
 
   // Fade out once minimum time + model loaded
   useEffect(() => {
-    if (!minTimeElapsed || (active && progress !== 100) || isFading) {
+    const isHomePage = pathname === "/";
+    const loadingReady = isHomePage ? heroModelReady : !active || progress === 100;
+
+    if (!minTimeElapsed || !loadingReady || isFading) {
       return;
     }
 
@@ -39,13 +63,22 @@ export function SplashScreen() {
     }, SPLASH_FADE_DURATION_MS);
 
     return () => clearTimeout(timeout);
-  }, [minTimeElapsed, active, progress, isFading]);
+  }, [minTimeElapsed, active, progress, heroModelReady, isFading, pathname]);
 
   if (isRemoved) return null;
 
   return (
     <div className={`splash-screen ${isFading ? "splash-screen--fading" : ""}`} aria-hidden="true">
-      <video autoPlay muted loop playsInline preload="auto" className="splash-video">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="splash-video"
+        onPlaying={() => setVideoStarted(true)}
+        onCanPlay={() => setVideoStarted(true)}
+      >
         <source src="/video/520.mp4" type="video/mp4" />
       </video>
 

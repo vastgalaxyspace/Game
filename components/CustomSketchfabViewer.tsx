@@ -3,10 +3,20 @@ import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Stage } from "@react-three/drei";
 
-type SplashWindow = Window & { __muktaSplashComplete?: boolean };
+type SplashWindow = Window & {
+  __muktaHeroModelReady?: boolean;
+  __muktaSplashComplete?: boolean;
+};
 
 function Model(props: any) {
   const { scene } = useGLTF("/nissan_fairlady_z_s30240z_1978.glb");
+
+  useEffect(() => {
+    const splashWindow = window as SplashWindow;
+    splashWindow.__muktaHeroModelReady = true;
+    window.dispatchEvent(new Event("mukta:hero-model-ready"));
+  }, []);
+
   return <primitive object={scene} {...props} />;
 }
 
@@ -28,7 +38,12 @@ export function CustomSketchfabViewer() {
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative", cursor: "grab", background: "transparent" }}>
-      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 0, 10], fov: 45 }}>
+      <Canvas
+        shadows={splashComplete}
+        dpr={splashComplete ? [1, 2] : 1}
+        frameloop={splashComplete ? "always" : "demand"}
+        camera={{ position: [0, 0, 10], fov: 45 }}
+      >
         <Suspense fallback={null}>
           <Stage environment="city" intensity={0.5} adjustCamera>
             <Model />
@@ -36,7 +51,7 @@ export function CustomSketchfabViewer() {
         </Suspense>
         <OrbitControls
           makeDefault
-          autoRotate
+          autoRotate={splashComplete}
           autoRotateSpeed={3}
           enableZoom={false}
           enablePan={false}

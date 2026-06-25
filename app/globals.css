@@ -2723,6 +2723,8 @@ textarea {
   inset: 0;
   z-index: 100000;
   /* above everything including the header */
+  isolation: isolate;
+  contain: layout paint style;
   overflow: hidden;
   background: #000;
   opacity: 1;
@@ -2741,13 +2743,14 @@ textarea {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
   display: block;
   width: clamp(180px, 40vw, 560px);
   height: auto;
   max-width: none;
   max-height: none;
   object-fit: contain;
+  backface-visibility: hidden;
 }
 
 /* Text overlay centered on the full viewport */
