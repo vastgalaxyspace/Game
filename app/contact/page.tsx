@@ -1,11 +1,35 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 export default function ContactPage() {
+  const [pages, setPages] = useState(3);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (contentRef.current) {
+        // Calculate exactly how many viewports (vh) the content takes up
+        const contentHeight = contentRef.current.scrollHeight;
+        const vh = window.innerHeight;
+        // Add a tiny bit of buffer (0.05) to ensure nothing is clipped
+        setPages(contentHeight / vh + 0.05);
+      }
+    };
+
+    handleResize(); // Initial calculation
+    
+    // Add small delay for initial load to ensure fonts/images are rendered
+    setTimeout(handleResize, 100);
+    setTimeout(handleResize, 500);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -28,18 +52,19 @@ export default function ContactPage() {
 
   return (
     <div className="parallax-contact-wrapper">
-      <Parallax pages={2.4} className="parallax-container">
+      <Parallax pages={pages} className="parallax-container">
 
         {/* ── Video Background Layer (scrolls slower = parallax) ── */}
-        <ParallaxLayer offset={0} speed={-0.2} factor={4} className="parallax-video-layer">
+        <ParallaxLayer offset={0} speed={-0.2} factor={pages + 1} className="parallax-video-layer">
           <video autoPlay muted loop playsInline className="contact-bg-video">
             <source src="/video/contactus.mp4" type="video/mp4" />
           </video>
           <div className="contact-video-overlay" />
         </ParallaxLayer>
 
-        {/* ── ALL page content in one layer (original structure preserved) ── */}
-        <ParallaxLayer offset={0} speed={0.3} factor={2.4}>
+        {/* ── ALL page content in one layer (speed=0 means natural scrolling) ── */}
+        <ParallaxLayer offset={0} speed={0} factor={pages} className="parallax-content-layer">
+          <div ref={contentRef} style={{ width: "100%" }}>
 
           {/* ── Hero ── */}
           <section className="page-hero">
@@ -362,6 +387,7 @@ export default function ContactPage() {
           </section>
 
           <Footer />
+          </div>
 
         </ParallaxLayer>
 
