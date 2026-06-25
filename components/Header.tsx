@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export function Header() {
@@ -26,9 +27,9 @@ export function Header() {
       className={`site-header${isScrolled ? " site-header--solid" : ""}`}
     >
       {/* ── Brand ── */}
-      <Link href="/" className="site-brand">
-        <span className="brand-mark" />
-        <span>
+      <Link href="/" className="site-brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <Image src="/mukta-logo-trans.png" alt="Mukta Logo" width={48} height={48} className="brand-logo" style={{ objectFit: 'contain', width: 'auto', height: '100%', maxHeight: '48px' }} />
+        <span style={{ display: 'flex', flexDirection: 'column' }}>
           <strong>MUKTA</strong>
           <small>GAME &amp; DEVELOPMENT</small>
         </span>

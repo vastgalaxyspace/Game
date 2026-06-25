@@ -49,7 +49,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Outfit', 'Inter', sans-serif;
 }
 
@@ -289,7 +294,7 @@ textarea {
   transition: transform 300ms ease, opacity 200ms ease;
 }
 
-.mobile-menu-btn span + span {
+.mobile-menu-btn span+span {
   margin-top: 5px;
 }
 
@@ -1583,15 +1588,19 @@ textarea {
   0% {
     transform: translateY(0) translateX(0) scale(1);
   }
+
   25% {
     transform: translateY(-30px) translateX(15px) scale(0.8);
   }
+
   50% {
     transform: translateY(-10px) translateX(-20px) scale(1.1);
   }
+
   75% {
     transform: translateY(-40px) translateX(10px) scale(0.9);
   }
+
   100% {
     transform: translateY(-60px) translateX(-10px) scale(1);
   }
@@ -1607,14 +1616,12 @@ textarea {
 
 .sc-grid-line {
   position: absolute;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(227, 0, 11, 0.04) 30%,
-    rgba(227, 0, 11, 0.06) 50%,
-    rgba(227, 0, 11, 0.04) 70%,
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      transparent,
+      rgba(227, 0, 11, 0.04) 30%,
+      rgba(227, 0, 11, 0.06) 50%,
+      rgba(227, 0, 11, 0.04) 70%,
+      transparent);
 }
 
 .sc-grid-line--v {
@@ -1627,14 +1634,12 @@ textarea {
   height: 1px;
   left: 0;
   right: 0;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(227, 0, 11, 0.04) 30%,
-    rgba(227, 0, 11, 0.06) 50%,
-    rgba(227, 0, 11, 0.04) 70%,
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgba(227, 0, 11, 0.04) 30%,
+      rgba(227, 0, 11, 0.06) 50%,
+      rgba(227, 0, 11, 0.04) 70%,
+      transparent);
 }
 
 /* ── Section header ── */
@@ -1702,8 +1707,8 @@ textarea {
   cursor: pointer;
   transform-style: preserve-3d;
   transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1),
-              opacity 600ms ease,
-              box-shadow 500ms ease;
+    opacity 600ms ease,
+    box-shadow 500ms ease;
   will-change: transform, opacity;
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -1711,18 +1716,18 @@ textarea {
 
 .sc-card:hover {
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6),
-              0 0 60px rgba(227, 0, 11, 0.08);
+    0 0 60px rgba(227, 0, 11, 0.08);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
 .sc-card--cyan:hover {
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6),
-              0 0 60px rgba(0, 212, 255, 0.1);
+    0 0 60px rgba(0, 212, 255, 0.1);
 }
 
 .sc-card--gold:hover {
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6),
-              0 0 60px rgba(245, 166, 35, 0.1);
+    0 0 60px rgba(245, 166, 35, 0.1);
 }
 
 /* Reflective border light */
@@ -1734,9 +1739,9 @@ textarea {
   pointer-events: none;
   transition: opacity 400ms ease;
   mask: linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+    linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   padding: 2px;
@@ -1756,7 +1761,7 @@ textarea {
   object-fit: cover;
   display: block;
   transition: transform 800ms cubic-bezier(0.23, 1, 0.32, 1),
-              filter 600ms ease;
+    filter 600ms ease;
 }
 
 .sc-card:hover .sc-card__media {
@@ -1789,12 +1794,10 @@ textarea {
   justify-content: flex-end;
   padding: 2rem;
   z-index: 5;
-  background: linear-gradient(
-    180deg,
-    transparent 20%,
-    rgba(6, 6, 10, 0.4) 50%,
-    rgba(6, 6, 10, 0.92) 100%
-  );
+  background: linear-gradient(180deg,
+      transparent 20%,
+      rgba(6, 6, 10, 0.4) 50%,
+      rgba(6, 6, 10, 0.92) 100%);
   opacity: 0.4;
   transition: opacity 500ms ease;
 }
@@ -1820,7 +1823,7 @@ textarea {
   transform: translateY(20px);
   opacity: 0;
   transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1) 80ms,
-              opacity 400ms ease 80ms;
+    opacity 400ms ease 80ms;
   backdrop-filter: blur(8px);
 }
 
@@ -1839,7 +1842,7 @@ textarea {
   transform: translateY(20px);
   opacity: 0;
   transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1) 150ms,
-              opacity 400ms ease 150ms;
+    opacity 400ms ease 150ms;
 }
 
 .sc-card__overlay--active .sc-card__title {
@@ -1855,7 +1858,7 @@ textarea {
   transform: translateY(20px);
   opacity: 0;
   transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1) 220ms,
-              opacity 400ms ease 220ms;
+    opacity 400ms ease 220ms;
 }
 
 .sc-card__overlay--active .sc-card__desc {
@@ -1875,7 +1878,7 @@ textarea {
   pointer-events: none;
   z-index: 1;
   transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1),
-              opacity 500ms ease;
+    opacity 500ms ease;
 }
 
 .sc-card__glow--red {
@@ -1972,8 +1975,15 @@ textarea {
 }
 
 @keyframes sc-scroll-wheel {
-  0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
 }
 
 
@@ -1989,8 +1999,8 @@ textarea {
   border-radius: var(--radius);
   overflow: hidden;
   transition: transform 250ms ease,
-              border-color 250ms ease,
-              box-shadow 250ms ease;
+    border-color 250ms ease,
+    box-shadow 250ms ease;
   height: 100%;
 }
 
@@ -2076,8 +2086,8 @@ textarea {
   border: 1px solid var(--line);
   overflow: hidden;
   transition: transform 300ms ease,
-              border-color 300ms ease,
-              box-shadow 300ms ease;
+    border-color 300ms ease,
+    box-shadow 300ms ease;
 }
 
 .featured-card:hover {
@@ -2160,8 +2170,8 @@ textarea {
   border-radius: var(--radius);
   height: 100%;
   transition: transform 250ms ease,
-              border-color 250ms ease,
-              box-shadow 250ms ease;
+    border-color 250ms ease,
+    box-shadow 250ms ease;
 }
 
 .testimonial-card:hover {
@@ -2218,48 +2228,107 @@ textarea {
    ANIMATIONS
    ═══════════════════════════════════════════ */
 @keyframes navDrop {
-  from { opacity: 0; transform: translateY(-1rem); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeFromLeft {
-  from { opacity: 0; transform: translate(-2rem, -48%); }
-  to { opacity: 1; transform: translate(0, -48%); }
+  from {
+    opacity: 0;
+    transform: translate(-2rem, -48%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, -48%);
+  }
 }
 
 @keyframes fadeFromRight {
-  from { opacity: 0; transform: translate(2rem, -43%); }
-  to { opacity: 1; transform: translate(0, -43%); }
+  from {
+    opacity: 0;
+    transform: translate(2rem, -43%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, -43%);
+  }
 }
 
 @keyframes bounceCue {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, 0.55rem); }
+
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, 0.55rem);
+  }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0.25; transform: translateY(2rem); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0.25;
+    transform: translateY(2rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes drawLine {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
-  50% { box-shadow: 0 0 40px var(--accent-glow); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  50% {
+    box-shadow: 0 0 40px var(--accent-glow);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .reveal-section {
@@ -2568,4 +2637,108 @@ textarea {
     gap: 0.5rem;
     text-align: center;
   }
+}
+
+/* ═══════════════════════════════════════════
+   SPLASH / INTRO SCREEN
+   ═══════════════════════════════════════════ */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  /* above everything including the header */
+  display: flex;
+  pointer-events: all;
+}
+
+.splash-half {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  transition: transform 1.3s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+/* When tearing, slide halves apart */
+.splash-tearing .splash-half--left {
+  transform: translateX(-100%);
+}
+
+.splash-tearing .splash-half--right {
+  transform: translateX(100%);
+}
+
+/* Inner wrapper spans full viewport width, positioned so each half clips its portion */
+.splash-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  /* = 100vw since parent is 50vw */
+  height: 100%;
+}
+
+.splash-inner--right {
+  left: -100%;
+  /* shift so the right portion of the content is visible */
+}
+
+/* Video centered at reduced scale */
+.splash-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+}
+
+/* Text overlay centered on the full viewport */
+.splash-text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.splash-mgd {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  color: #fff;
+  text-shadow: 0 0 40px rgba(227, 0, 11, 0.6), 0 0 80px rgba(227, 0, 11, 0.3);
+  margin: 0;
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.splash-fullname {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.7rem, 1.8vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0.5rem 0 0;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.splash-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
+import { SplashScreen } from "@/components/SplashScreen";
 
 export const metadata: Metadata = {
   title: "Mukta Game & Development",
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <SplashScreen />
         <div className="showcase-shell">
           <Header />
           {children}
