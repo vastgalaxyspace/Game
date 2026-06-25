@@ -1110,8 +1110,7 @@ textarea {
       rgba(8, 8, 16, 0.7) 0%,
       rgba(8, 8, 16, 0.5) 30%,
       rgba(8, 8, 16, 0.55) 60%,
-      rgba(8, 8, 16, 0.85) 100%
-    );
+      rgba(8, 8, 16, 0.85) 100%);
   z-index: 1;
 }
 
@@ -2745,7 +2744,7 @@ textarea {
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   display: block;
-  width: clamp(180px, 40vw, 560px);
+  width: 50%;
   height: auto;
   max-width: none;
   max-height: none;

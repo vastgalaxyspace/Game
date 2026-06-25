@@ -9,7 +9,7 @@ const SPLASH_FADE_DURATION_MS = 900;
 export function SplashScreen() {
   const pathname = usePathname();
   const { active, progress } = useProgress();
-  const [videoStarted, setVideoStarted] = useState(false);
+
   const [showText, setShowText] = useState(false);
   const [showSubText, setShowSubText] = useState(false);
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
@@ -30,12 +30,8 @@ export function SplashScreen() {
     return () => window.removeEventListener("mukta:hero-model-ready", handleHeroModelReady);
   }, []);
 
-  // Timed text reveals start from actual video playback, not component mount.
+  // Timed text reveals start from component mount (video autoplays immediately).
   useEffect(() => {
-    if (!videoStarted) {
-      return;
-    }
-
     const t1 = setTimeout(() => setShowText(true), 2000);
     const t2 = setTimeout(() => setShowSubText(true), 3200);
     const t3 = setTimeout(() => setMinTimeElapsed(true), 5000);
@@ -44,7 +40,7 @@ export function SplashScreen() {
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [videoStarted]);
+  }, []);
 
   // Fade out once minimum time + model loaded
   useEffect(() => {
@@ -76,8 +72,6 @@ export function SplashScreen() {
         playsInline
         preload="auto"
         className="splash-video"
-        onPlaying={() => setVideoStarted(true)}
-        onCanPlay={() => setVideoStarted(true)}
       >
         <source src="/video/520.mp4" type="video/mp4" />
       </video>
