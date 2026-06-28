@@ -139,7 +139,8 @@ textarea {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  content: "";
+  will-change: auto;
+  content: none;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent 42%, rgba(0, 0, 0, 0.36));
 }
 
@@ -356,6 +357,37 @@ textarea {
 }
 
 /* ═══════════════════════════════════════════
+   HOME PAGE CONTAINER
+   ═══════════════════════════════════════════ */
+.home-page {
+  width: 100%;
+  background: var(--bg-dark);
+  overflow-x: hidden;
+}
+
+.home-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  background: var(--accent);
+}
+
+.home-cta h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 950;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.home-cta p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 800;
+}
+
+/* ═══════════════════════════════════════════
    HERO
    ═══════════════════════════════════════════ */
 .hero-section {
@@ -386,7 +418,6 @@ textarea {
   object-fit: initial;
   object-position: center;
   pointer-events: none;
-  filter: brightness(1.02) contrast(1.04) saturate(1);
 }
 
 .hero-copy {
@@ -395,7 +426,6 @@ textarea {
   left: clamp(1rem, 5vw, 5rem);
   z-index: 3;
   width: min(31rem, 34vw);
-  will-change: transform, opacity;
 }
 
 .hero-kicker {
@@ -453,6 +483,11 @@ textarea {
   letter-spacing: 0.2em;
   transform: translateX(-50%);
   animation: bounceCue 1.8s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.scroll-cue:not([hidden]) {
+  animation-play-state: running;
 }
 
 .scroll-cue span {
@@ -496,7 +531,7 @@ textarea {
 .content-section {
   position: relative;
   z-index: 2;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 5rem);
+  padding: clamp(3rem, 5vw, 5rem) clamp(1rem, 5vw, 5rem);
   background: var(--bg-dark);
 }
 
@@ -1926,7 +1961,7 @@ textarea {
 .sc-section {
   position: relative;
   z-index: 2;
-  padding: 6rem clamp(1rem, 5vw, 5rem) 8rem;
+  padding: 4rem clamp(1rem, 5vw, 5rem) 4rem;
   overflow: hidden;
   isolation: isolate;
 }
@@ -1944,7 +1979,6 @@ textarea {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(227, 0, 11, 0.6), rgba(255, 200, 120, 0.3));
   animation: sc-float linear infinite alternate;
-  filter: blur(1px);
 }
 
 @keyframes sc-float {
@@ -2232,12 +2266,12 @@ textarea {
 /* ── Glow orb ── */
 .sc-card__glow {
   position: absolute;
-  width: 200%;
-  height: 200%;
+  width: 150%;
+  height: 150%;
   top: -50%;
   left: -50%;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(30px);
   pointer-events: none;
   z-index: 1;
   transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1),
@@ -2767,7 +2801,7 @@ textarea {
   }
 
   .hero-section {
-    min-height: 112vh;
+    min-height: 100vh;
   }
 
   .hero-copy {
@@ -3023,6 +3057,10 @@ textarea {
 .splash-screen--fading {
   opacity: 0;
   pointer-events: none;
+}
+
+.splash-screen--hidden {
+  display: none !important;
 }
 
 /* Video centered at reduced scale */

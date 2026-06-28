@@ -63,6 +63,12 @@ function LoadingLabel() {
   );
 }
 
+/* Pre-allocated vectors to avoid per-frame garbage collection */
+const _startPosition = new THREE.Vector3(0.3, 2.4, 8.2);
+const _endDirection = new THREE.Vector3(0.62, 0.26, 0.74).normalize();
+const _lookTarget = new THREE.Vector3(0, 1.05, 0);
+const _desiredPosition = new THREE.Vector3();
+
 function CinematicCameraRig({ zoomSignal }: { zoomSignal: number }) {
   const { camera } = useThree();
   const controls = useRef<OrbitControlsImpl>(null);
@@ -105,12 +111,10 @@ function CinematicCameraRig({ zoomSignal }: { zoomSignal: number }) {
   useFrame((_, delta) => {
     const elapsed = (performance.now() - introStart.current) / 1000;
     const introT = introSkipped.current ? 1 : THREE.MathUtils.smoothstep(elapsed / 2.4, 0, 1);
-    const startPosition = new THREE.Vector3(0.3, 2.4, 8.2);
-    const endDirection = new THREE.Vector3(0.62, 0.26, 0.74).normalize();
     const desiredDistance = THREE.MathUtils.lerp(7.6, targetDistance.current, introT);
-    const desiredPosition = endDirection.multiplyScalar(desiredDistance);
+    _desiredPosition.copy(_endDirection).multiplyScalar(desiredDistance);
 
-    camera.position.lerpVectors(startPosition, desiredPosition, introT);
+    camera.position.lerpVectors(_startPosition, _desiredPosition, introT);
 
     if (introSkipped.current) {
       const currentDistance = camera.position.length();
@@ -123,8 +127,8 @@ function CinematicCameraRig({ zoomSignal }: { zoomSignal: number }) {
       camera.position.setLength(smoothedDistance);
     }
 
-    camera.lookAt(0, 1.05, 0);
-    controls.current?.target.lerp(new THREE.Vector3(0, 1.05, 0), 0.16);
+    camera.lookAt(_lookTarget.x, _lookTarget.y, _lookTarget.z);
+    controls.current?.target.lerp(_lookTarget, 0.16);
     controls.current?.update();
   });
 
