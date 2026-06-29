@@ -15,6 +15,7 @@ import Image from "next/image";
 interface CardData {
   type: "video" | "image";
   src: string;
+  captionSrc?: string;
   tag: string;
   tagIcon: "play" | "image";
   title: string;
@@ -27,6 +28,7 @@ const CARDS: CardData[] = [
   {
     type: "video",
     src: "/video/card1.mp4",
+    captionSrc: "/video/card1.vtt",
     tag: "3D Animation",
     tagIcon: "play",
     title: "Character Animation Reel",
@@ -36,6 +38,7 @@ const CARDS: CardData[] = [
   {
     type: "video",
     src: "/video/card2.mp4",
+    captionSrc: "/video/card2.vtt",
     tag: "Environment",
     tagIcon: "play",
     title: "Immersive World Design",
@@ -83,6 +86,7 @@ function ShowcaseCard({
   isVisible: boolean;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const rafRef = useRef<number>(0);
@@ -108,6 +112,22 @@ function ShowcaseCard({
 
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
+  }, []);
+
+  useEffect(() => {
+    if (card.type !== "video" || !videoRef.current) {
+      return;
+    }
+
+    if (isVisible) {
+      videoRef.current.play().catch(() => undefined);
+    } else {
+      videoRef.current.pause();
+    }
+  }, [card.type, isVisible]);
+
+  useEffect(() => {
+    return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
   // Scroll-driven transforms per card
@@ -169,14 +189,19 @@ function ShowcaseCard({
       <div className="sc-card__media-wrap" style={{ background: card.fit === "contain" ? "#000" : undefined }}>
         {card.type === "video" ? (
           <video
-            src={card.src}
-            autoPlay
+            ref={videoRef}
+            src={isVisible ? card.src : undefined}
             muted
             loop
             playsInline
+            preload="metadata"
             className="sc-card__media"
             style={card.fit === "contain" ? { objectFit: "contain" } : undefined}
-          />
+          >
+            {card.captionSrc && (
+              <track kind="captions" src={card.captionSrc} srcLang="en" label="English" />
+            )}
+          </video>
         ) : (
           <Image
             src={card.src}
@@ -247,28 +272,39 @@ export function ShowcaseReel() {
     const el = sectionRef.current;
     if (!el) return;
 
-    let rafId: number;
     let isIntersecting = false;
+    let rafId = 0;
 
-    const onScroll = () => {
-      if (!isIntersecting) return;
+    const updateProgress = () => {
       const rect = el.getBoundingClientRect();
       const windowH = window.innerHeight;
       const raw = (windowH - rect.top) / (windowH + rect.height);
       const clamped = Math.max(0, Math.min(1, raw));
       setProgress(clamped);
       setIsVisible(clamped > 0.05);
-      rafId = requestAnimationFrame(onScroll);
+      rafId = 0;
+    };
+
+    const scheduleUpdate = () => {
+      if (!isIntersecting || rafId) return;
+      rafId = requestAnimationFrame(updateProgress);
     };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         isIntersecting = entry.isIntersecting;
         if (isIntersecting) {
-          rafId = requestAnimationFrame(onScroll);
-        } else {
-          cancelAnimationFrame(rafId);
+          scheduleUpdate();
+          window.addEventListener("scroll", scheduleUpdate, { passive: true });
+          window.addEventListener("resize", scheduleUpdate);
+          return;
         }
+
+        setIsVisible(false);
+        window.removeEventListener("scroll", scheduleUpdate);
+        window.removeEventListener("resize", scheduleUpdate);
+        cancelAnimationFrame(rafId);
+        rafId = 0;
       },
       { threshold: 0, rootMargin: "200px 0px 200px 0px" }
     );
@@ -277,6 +313,8 @@ export function ShowcaseReel() {
 
     return () => {
       observer.disconnect();
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
       cancelAnimationFrame(rafId);
     };
   }, []);

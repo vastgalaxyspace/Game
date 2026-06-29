@@ -28,7 +28,7 @@ export function Header() {
     >
       {/* ── Brand ── */}
       <Link href="/" className="site-brand" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <Image src="/mukta-logo-trans.png" alt="Mukta Logo" width={48} height={48} className="brand-logo" style={{ objectFit: 'contain', width: 'auto', height: '100%', maxHeight: '48px' }} />
+        <Image src="/mukta-logo-trans.png" alt="Mukta Logo" width={48} height={48} className="brand-logo" priority />
         <span style={{ display: 'flex', flexDirection: 'column' }}>
           <strong>MUKTA</strong>
           <small>GAME &amp; DEVELOPMENT</small>

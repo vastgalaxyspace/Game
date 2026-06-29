@@ -1,75 +1,70 @@
 "use client";
+
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Stage } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
+
+type ModelProps = {
+  onReady: () => void;
+};
 
 type SplashWindow = Window & {
   __muktaHeroModelReady?: boolean;
-  __muktaSplashComplete?: boolean;
 };
 
-function Model(props: any) {
-  const { scene } = useGLTF("/nissan_fairlady_z_s30240z_1978.glb");
+const HERO_MODEL_URL = "/nissan_fairlady_z_s30240z_1978.optimized.glb";
+
+function Model({ onReady }: ModelProps) {
+  const { scene } = useGLTF(HERO_MODEL_URL);
 
   useEffect(() => {
     const splashWindow = window as SplashWindow;
     splashWindow.__muktaHeroModelReady = true;
     window.dispatchEvent(new Event("mukta:hero-model-ready"));
-  }, []);
+    onReady();
+  }, [onReady]);
 
-  return <primitive object={scene} {...props} />;
+  return (
+    <primitive
+      object={scene}
+      position={[0, -1.05, 0]}
+      rotation={[0, -0.35, 0]}
+      scale={1.15}
+    />
+  );
 }
 
 export function CustomSketchfabViewer() {
-  const [splashComplete, setSplashComplete] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-
-    return Boolean((window as SplashWindow).__muktaSplashComplete);
-  });
-
-  useEffect(() => {
-    const handleSplashComplete = () => setSplashComplete(true);
-
-    window.addEventListener("mukta:splash-complete", handleSplashComplete);
-
-    // Fallback: if event was missed or never fired, poll briefly then force-enable
-    const fallback = setTimeout(() => {
-      setSplashComplete(true);
-    }, 4000); // Absolute max wait — 4s after mount
-
-    return () => {
-      window.removeEventListener("mukta:splash-complete", handleSplashComplete);
-      clearTimeout(fallback);
-    };
-  }, []);
+  const [modelReady, setModelReady] = useState(false);
 
   return (
-    <div style={{ width: "100%", height: "100%", position: "relative", cursor: "grab", background: "transparent" }}>
+    <div className="hero-model-viewer">
+      {!modelReady && <div className="hero-model-viewer__loading" aria-hidden="true" />}
       <Canvas
-        shadows={splashComplete}
-        dpr={splashComplete ? [1, 2] : [0.5, 1]}
-        frameloop={splashComplete ? "always" : "demand"}
-        camera={{ position: [0, 0, 10], fov: 45 }}
+        dpr={[0.75, 1.25]}
+        frameloop="demand"
+        camera={{ position: [0, 0.5, 9], fov: 45 }}
+        gl={{
+          antialias: false,
+          powerPreference: "high-performance",
+        }}
       >
+        <color attach="background" args={["#050507"]} />
+        <ambientLight intensity={1.6} />
+        <directionalLight position={[4, 6, 5]} intensity={2.2} />
+        <pointLight position={[-4, 2, 3]} intensity={1.2} color="#e3000b" />
         <Suspense fallback={null}>
-          <Stage environment="city" intensity={0.5} adjustCamera>
-            <Model />
-          </Stage>
+          <Model onReady={() => setModelReady(true)} />
         </Suspense>
         <OrbitControls
           makeDefault
-          autoRotate={splashComplete}
-          autoRotateSpeed={3}
+          enableDamping
           enableZoom={false}
           enablePan={false}
-          minPolarAngle={0}
+          minPolarAngle={0.15}
           maxPolarAngle={Math.PI / 2 + 0.1}
         />
       </Canvas>
     </div>
   );
 }
-
-useGLTF.preload("/nissan_fairlady_z_s30240z_1978.glb");

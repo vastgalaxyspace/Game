@@ -21,7 +21,7 @@ export function Footer() {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="GitHub GH"
             >
               GH
             </a>
@@ -29,7 +29,7 @@ export function Footer() {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label="LinkedIn IN"
             >
               IN
             </a>
@@ -37,7 +37,7 @@ export function Footer() {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram"
+              aria-label="Instagram IG"
             >
               IG
             </a>
@@ -45,7 +45,7 @@ export function Footer() {
               href="https://youtube.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="YouTube"
+              aria-label="YouTube YT"
             >
               YT
             </a>
@@ -76,7 +76,7 @@ export function Footer() {
           <p>Get the latest on our projects and 3D insights.</p>
 
           <div className="newsletter-form">
-            <input type="email" placeholder="Your email" />
+            <input type="email" placeholder="Your email" aria-label="Newsletter email" />
             <button>Subscribe</button>
           </div>
         </div>

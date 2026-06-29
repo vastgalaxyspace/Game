@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
-
 /* ═══════════════════════════════════════════
    OBSIDIAN EMBER — Design Tokens
    ═══════════════════════════════════════════ */
@@ -12,15 +10,15 @@
   --text-primary: #f0f0f5;
   --text-secondary: #8a8aa0;
   --text-muted: #555770;
-  --accent: #e3000b;
+  --accent: #ff3340;
   --accent-dark: #8f0710;
-  --accent-glow: rgba(227, 0, 11, 0.4);
-  --accent-soft: rgba(227, 0, 11, 0.12);
+  --accent-glow: rgba(255, 51, 64, 0.4);
+  --accent-soft: rgba(255, 51, 64, 0.12);
   --accent-secondary: #ff4d4d;
   --gold: #f5a623;
   --cyan: #00d4ff;
   --line: rgba(255, 255, 255, 0.08);
-  --line-accent: rgba(227, 0, 11, 0.3);
+  --line-accent: rgba(255, 51, 64, 0.3);
   --glass: rgba(18, 18, 26, 0.85);
   --radius: 12px;
   --radius-sm: 8px;
@@ -44,7 +42,7 @@ body {
   overflow-x: hidden;
   color: var(--text-primary);
   background: var(--bg-dark);
-  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -55,7 +53,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: var(--font-outfit), var(--font-inter), sans-serif;
 }
 
 button {
@@ -193,7 +191,7 @@ textarea {
   display: block;
   font-size: 1.28rem;
   line-height: 1;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
 }
 
 .site-brand small {
@@ -681,7 +679,7 @@ textarea {
   font-size: 2.6rem;
   font-weight: 950;
   line-height: 0.8;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
 }
 
 .process-card h3 {
@@ -904,7 +902,7 @@ textarea {
 .about-story-visual .logo-display {
   font-size: 5rem;
   font-weight: 950;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   color: var(--text-primary);
   opacity: 0.1;
 }
@@ -983,7 +981,7 @@ textarea {
   justify-content: center;
   font-size: 1.8rem;
   font-weight: 900;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   box-shadow: 0 0 20px var(--accent-glow);
@@ -1040,7 +1038,7 @@ textarea {
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 900;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   color: #fff;
 }
 
@@ -1131,7 +1129,7 @@ textarea {
   justify-content: center;
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   box-shadow: 0 0 25px var(--accent-glow);
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-weight: 900;
   font-size: 1rem;
   color: #fff;
@@ -1217,7 +1215,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-size: 1.3rem;
   font-weight: 900;
   color: var(--text-primary);
@@ -1644,7 +1642,7 @@ textarea {
 .stat-number {
   font-size: 2.8rem;
   font-weight: 950;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   color: var(--accent);
   line-height: 1;
 }
@@ -1859,7 +1857,7 @@ textarea {
 .services-detail-card .card-number {
   font-size: 3rem;
   font-weight: 950;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   color: var(--accent);
   opacity: 0.15;
   position: absolute;
@@ -2039,7 +2037,7 @@ textarea {
   font-weight: 950;
   line-height: 0.92;
   color: var(--text-primary);
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-outfit), sans-serif;
 }
 
 .sc-header__subtitle {
@@ -2200,7 +2198,7 @@ textarea {
   color: #fff;
   font-size: 1.25rem;
   font-weight: 900;
-  font-family: "Outfit", sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   letter-spacing: 0.02em;
   transform: translateY(20px);
   opacity: 0;
@@ -2495,7 +2493,7 @@ textarea {
   color: #fff;
   font-size: 1.15rem;
   font-weight: 900;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
 }
 
 .featured-card--big h3 {
@@ -2566,7 +2564,7 @@ textarea {
   justify-content: center;
   font-size: 0.85rem;
   font-weight: 900;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   color: #fff;
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   box-shadow: 0 0 15px var(--accent-glow);
@@ -3055,7 +3053,7 @@ textarea {
 }
 
 .splash-mgd {
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-size: clamp(4rem, 10vw, 8rem);
   font-weight: 900;
   letter-spacing: 0.25em;
@@ -3068,7 +3066,7 @@ textarea {
 }
 
 .splash-fullname {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-inter), sans-serif;
   font-size: clamp(0.7rem, 1.8vw, 1.1rem);
   font-weight: 600;
   letter-spacing: 0.35em;
@@ -3083,4 +3081,203 @@ textarea {
 .splash-visible {
   opacity: 1;
   transform: scale(1) translateY(0);
+}
+
+/* Optimized homepage layout */
+.home-page {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-dark);
+}
+
+.home-hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 70% 48%, rgba(255, 51, 64, 0.14), transparent 34rem),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.18) 54%, rgba(0, 0, 0, 0.62)),
+    var(--bg-darker);
+}
+
+.home-hero__model,
+.home-hero__model .sketchfab-embed-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.home-hero__model .sketchfab-embed-wrapper {
+  overflow: hidden;
+  background: #050507;
+  opacity: 0.78;
+}
+
+.hero-model-viewer,
+.hero-model-fallback {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 63% 48%, rgba(255, 51, 64, 0.18), transparent 18rem),
+    radial-gradient(circle at 45% 52%, rgba(0, 212, 255, 0.09), transparent 20rem),
+    #050507;
+}
+
+.hero-model-viewer__loading,
+.hero-model-fallback__mark {
+  position: absolute;
+  inset: 18% 12%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(255, 51, 64, 0.18), transparent 16rem);
+  opacity: 0.7;
+}
+
+.hero-model-viewer__loading {
+  z-index: 1;
+  pointer-events: none;
+  animation: pulse-glow 1.8s ease-in-out infinite;
+}
+
+.home-hero .hero-copy {
+  top: 50%;
+  transform: translateY(-48%);
+}
+
+.home-hero .hero-kicker {
+  text-shadow: 0 0 20px rgba(255, 51, 64, 0.45);
+}
+
+.home-hero .hero-copy h1 {
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+.home-hero .hero-copy p:not(.hero-kicker) {
+  max-width: 25rem;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
+
+.home-section {
+  position: relative;
+  z-index: 2;
+  min-height: min(100vh, 58rem);
+  padding: 5rem clamp(1rem, 5vw, 5rem);
+  background: var(--bg-dark);
+}
+
+.home-section--surface {
+  background: var(--surface);
+}
+
+.section-action {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.stats-strip {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  padding: 3rem 5rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.stats-strip__item {
+  text-align: center;
+}
+
+.stats-strip__number {
+  color: var(--accent);
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 3rem;
+  font-weight: 950;
+}
+
+.stats-strip__label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-cta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 5rem clamp(1rem, 5vw, 5rem);
+  background: var(--accent);
+}
+
+.home-cta h2 {
+  margin: 0 0 0.5rem;
+  color: #fff;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 950;
+}
+
+.home-cta p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 800;
+}
+
+.home-cta__button {
+  color: #fff;
+  background: var(--bg-dark);
+}
+
+.brand-logo {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px;
+  max-height: 48px;
+  object-fit: contain;
+  flex: 0 0 48px;
+}
+
+.section-kicker,
+.section-heading p,
+.sc-header__kicker,
+.testimonial-role {
+  color: var(--accent);
+}
+
+@media (max-width: 620px) {
+  .home-hero .hero-copy {
+    top: auto;
+    transform: none;
+  }
+
+  .hero-model-viewer,
+  .hero-model-fallback {
+    min-height: 100svh;
+  }
+
+  .home-section {
+    min-height: auto;
+    padding: 4rem 1rem;
+  }
+
+  .home-cta {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 4rem 1rem;
+  }
 }
