@@ -27,9 +27,9 @@ function Model({ onReady }: ModelProps) {
   return (
     <primitive
       object={scene}
-      position={[0, -1.05, 0]}
-      rotation={[0, -0.35, 0]}
-      scale={1.15}
+      position={[1.45, -0.9, 0]}
+      rotation={[0, -0.45, 0]}
+      scale={1.35}
     />
   );
 }
@@ -43,7 +43,7 @@ export function CustomSketchfabViewer() {
       <Canvas
         dpr={[0.75, 1.25]}
         frameloop="demand"
-        camera={{ position: [0, 0.5, 9], fov: 45 }}
+        camera={{ position: [0, 0.85, 13], fov: 42 }}
         gl={{
           antialias: false,
           powerPreference: "high-performance",
@@ -61,6 +61,7 @@ export function CustomSketchfabViewer() {
           enableDamping
           enableZoom={false}
           enablePan={false}
+          target={[1.45, -0.35, 0]}
           minPolarAngle={0.15}
           maxPolarAngle={Math.PI / 2 + 0.1}
         />

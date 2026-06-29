@@ -92,26 +92,7 @@ export default function Home() {
   const [loadHeroModel, setLoadHeroModel] = useState(false);
 
   useEffect(() => {
-    const idleWindow = window as Window & {
-      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
-      cancelIdleCallback?: (handle: number) => void;
-    };
-
-    const fallback = window.setTimeout(() => setLoadHeroModel(true), 1800);
-    const idleId = idleWindow.requestIdleCallback?.(
-      () => {
-        window.clearTimeout(fallback);
-        setLoadHeroModel(true);
-      },
-      { timeout: 2200 }
-    );
-
-    return () => {
-      window.clearTimeout(fallback);
-      if (idleId && idleWindow.cancelIdleCallback) {
-        idleWindow.cancelIdleCallback(idleId);
-      }
-    };
+    setLoadHeroModel(true);
   }, []);
 
   const scrollToShowcase = () => {
