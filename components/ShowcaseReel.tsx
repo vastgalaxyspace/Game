@@ -114,142 +114,159 @@ function ShowcaseCard({
     setIsHovered(true);
   }, []);
 
-  // Scroll-driven transforms per card
+  // Simple scroll-based fade and slight upward shift
   const staggerOffset = index * 0.15;
   const cardProgress = Math.max(
     0,
     Math.min(1, (progress - staggerOffset) / (1 - staggerOffset))
   );
-
-  // Entry animation values
-  const entryScale = 0.7 + cardProgress * 0.3;
-  const entryY = (1 - cardProgress) * 120;
-  const entryRotateX = (1 - cardProgress) * 15;
   const entryOpacity = Math.min(1, cardProgress * 2.5);
 
-  // Continuous scroll parallax (different rate per card)
-  const scrollParallaxY = (progress - 0.5) * (30 + index * 20);
-  const scrollParallaxX =
-    (progress - 0.5) * (index === 1 ? 0 : index === 0 ? -15 : 15);
-
-  // Rotation based on scroll
-  const scrollRotateZ =
-    (progress - 0.5) * (index === 0 ? -2 : index === 2 ? 2 : 0);
-
-  const transform = isVisible
-    ? `
-        perspective(1200px)
-        translateY(${entryY + scrollParallaxY}px)
-        translateX(${scrollParallaxX}px)
-        scale(${entryScale})
-        rotateX(${entryRotateX + tiltState.x}deg)
-        rotateY(${tiltState.y}deg)
-        rotateZ(${scrollRotateZ}deg)
-      `
-    : `perspective(1200px) translateY(200px) scale(0.5) rotateX(30deg)`;
+  // 3D Tilt for the card (mouse-driven)
+  const cardTransform = isVisible
+    ? `perspective(1200px) rotateX(${tiltState.x}deg) rotateY(${tiltState.y}deg)`
+    : `perspective(1200px) rotateX(0deg)`;
 
   return (
     <div
-      ref={cardRef}
-      className={`sc-card sc-card--${card.glow}`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={handleMouseEnter}
+      className={`sc-card-container ${
+        index % 2 === 0 ? "sc-card-container--left" : "sc-card-container--right"
+      }`}
       style={{
-        transform,
         opacity: isVisible ? entryOpacity : 0,
-        transitionDelay: `${index * 100}ms`,
+        transform: isVisible ? `translateY(${(1 - cardProgress) * 40}px)` : `translateY(100px)`,
+        transition: "opacity 800ms ease, transform 800ms cubic-bezier(0.23, 1, 0.32, 1)",
       }}
     >
-      {/* Reflective border highlight */}
+      {/* ── 3D Media Card ── */}
       <div
-        className="sc-card__border-light"
-        style={{
-          background: `radial-gradient(
-            circle at ${50 + tiltState.y * 4}% ${50 + tiltState.x * 4}%,
-            ${card.glow === "red" ? "rgba(227,0,11,0.5)" : card.glow === "cyan" ? "rgba(0,212,255,0.5)" : "rgba(245,166,35,0.5)"},
-            transparent 70%
-          )`,
-          opacity: isHovered ? 1 : 0,
-        }}
-      />
-
-      {/* Media */}
-      <div
-        className="sc-card__media-wrap"
-        style={{
-          background: card.fit === "contain" ? "#000" : undefined,
-        }}
+        ref={cardRef}
+        className={`sc-card sc-card--${card.glow}`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleMouseEnter}
+        style={{ transform: cardTransform }}
       >
-        {card.type === "video" ? (
-          <video
-            src={card.src}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            className="sc-card__media"
-            style={
-              card.fit === "contain" ? { objectFit: "contain" } : undefined
-            }
-          />
-        ) : (
-          <Image
-            src={card.src}
-            alt={card.title}
-            className="sc-card__media"
-            width={600}
-            height={800}
-            loading="lazy"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: card.fit || "cover",
-            }}
-          />
-        )}
-
-        {/* Ken Burns zoom driven by scroll */}
+        {/* Reflective border highlight */}
         <div
-          className="sc-card__media-zoom"
+          className="sc-card__border-light"
           style={{
-            transform: `scale(${1 + progress * 0.08 + (isHovered ? 0.05 : 0)})`,
+            background: `radial-gradient(
+              circle at ${50 + tiltState.y * 4}% ${50 + tiltState.x * 4}%,
+              ${
+                card.glow === "red"
+                  ? "rgba(227,0,11,0.5)"
+                  : card.glow === "cyan"
+                  ? "rgba(0,212,255,0.5)"
+                  : "rgba(245,166,35,0.5)"
+              },
+              transparent 70%
+            )`,
+            opacity: isHovered ? 1 : 0,
           }}
         />
+
+        {/* Media */}
+        <div
+          className="sc-card__media-wrap"
+          style={{
+            background: card.fit === "contain" ? "#000" : undefined,
+          }}
+        >
+          {card.type === "video" ? (
+            <video
+              src={card.src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              className="sc-card__media"
+              style={
+                card.fit === "contain" ? { objectFit: "contain" } : undefined
+              }
+            />
+          ) : (
+            <Image
+              src={card.src}
+              alt={card.title}
+              className="sc-card__media"
+              width={600}
+              height={800}
+              loading="lazy"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: card.fit || "cover",
+              }}
+            />
+          )}
+
+          {/* Ken Burns zoom driven by scroll */}
+          <div
+            className="sc-card__media-zoom"
+            style={{
+              transform: `scale(${
+                1 + progress * 0.08 + (isHovered ? 0.05 : 0)
+              })`,
+            }}
+          />
+        </div>
+
+        {/* Cinematic vignette */}
+        <div className="sc-card__vignette" />
+
+        {/* Overlay content (REMOVED DESCRIPTION TEXT) */}
+        <div
+          className={`sc-card__overlay ${
+            isHovered ? "sc-card__overlay--active" : ""
+          }`}
+        >
+          {/* We leave the overlay empty or you could put a "View Project" button here */}
+        </div>
+
+        {/* Glow orb */}
+        <div
+          className={`sc-card__glow sc-card__glow--${card.glow}`}
+          style={{
+            transform: `translate(${tiltState.y * 3}px, ${tiltState.x * 3}px)`,
+            opacity: isHovered ? 0.8 : 0.2 + progress * 0.15,
+          }}
+        />
+
+        {/* Corner accent lines */}
+        <div className="sc-card__corner sc-card__corner--tl" />
+        <div className="sc-card__corner sc-card__corner--br" />
       </div>
 
-      {/* Cinematic vignette */}
-      <div className="sc-card__vignette" />
-
-      {/* Overlay content */}
-      <div
-        className={`sc-card__overlay ${isHovered ? "sc-card__overlay--active" : ""}`}
-      >
+      {/* ── Text Content (Beside the card) ── */}
+      <div className="sc-card-text">
         <span className="sc-card__tag">
           {card.tagIcon === "play" ? (
             <svg
-              width="12"
-              height="12"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              style={{ marginRight: "0.5rem", verticalAlign: "middle" }}
             >
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
           ) : (
             <svg
-              width="12"
-              height="12"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              style={{ marginRight: "0.5rem", verticalAlign: "middle" }}
             >
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
               <circle cx="8.5" cy="8.5" r="1.5" />
@@ -258,22 +275,9 @@ function ShowcaseCard({
           )}
           {card.tag}
         </span>
-        <h3 className="sc-card__title">{card.title}</h3>
-        <p className="sc-card__desc">{card.desc}</p>
+        <h3 className="sc-card-text__title">{card.title}</h3>
+        <p className="sc-card-text__desc">{card.desc}</p>
       </div>
-
-      {/* Glow orb */}
-      <div
-        className={`sc-card__glow sc-card__glow--${card.glow}`}
-        style={{
-          transform: `translate(${tiltState.y * 3}px, ${tiltState.x * 3}px)`,
-          opacity: isHovered ? 0.8 : 0.2 + progress * 0.15,
-        }}
-      />
-
-      {/* Corner accent lines */}
-      <div className="sc-card__corner sc-card__corner--tl" />
-      <div className="sc-card__corner sc-card__corner--br" />
     </div>
   );
 }

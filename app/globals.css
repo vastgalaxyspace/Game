@@ -2087,17 +2087,54 @@ textarea {
 
 /* ── Cards container ── */
 .sc-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem; /* Increased gap for vertical flow */
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
 }
 
+/* ── Card Container (Text + Media) ── */
+.sc-card-container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+  transition: opacity 600ms ease, transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform, opacity;
+}
+
+.sc-card-container--left {
+  flex-direction: row;
+}
+
+.sc-card-container--right {
+  flex-direction: row-reverse;
+}
+
+.sc-card-text {
+  flex: 1;
+}
+
+.sc-card-text__title {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 900;
+  margin: 1rem 0;
+  color: var(--text-primary);
+}
+
+.sc-card-text__desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
 /* ── Individual card ── */
 .sc-card {
+  width: 42%;
+  flex-shrink: 0;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
