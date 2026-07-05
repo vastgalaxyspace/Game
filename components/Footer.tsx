@@ -122,7 +122,7 @@ export function Footer() {
                 </a>
                 {/* YouTube */}
                 <a
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/@mgdgames_ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-social-icon"
