@@ -29,7 +29,7 @@ export function Header() {
       {/* ── Brand ── */}
       <Link href="/" className="site-brand">
         <Image
-          src="/mukta-logo-trans.png"
+          src="/mukta logo-trans.png"
           alt="Mukta Logo"
           width={48}
           height={48}
