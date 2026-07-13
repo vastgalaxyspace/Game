@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Footer } from "@/components/Footer";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
@@ -287,7 +288,12 @@ export default function AboutPage() {
         <div className="showcase-grid">
           {["B2", "B4", "B5", "B3", "B6", "B7"].map((img) => (
             <div key={img} className="showcase-item">
-              <img src={`/${img}.jpg`} alt={`Blender Showcase ${img}`} loading="lazy" />
+              <Image 
+                src={`/${img}.jpg`} 
+                alt={`Blender Showcase ${img}`} 
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
             </div>
           ))}
         </div>

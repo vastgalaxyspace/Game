@@ -16,7 +16,7 @@ function Model() {
 
   return (
     <Center>
-      <primitive object={scene} rotation={[0, -0.25, 0]} scale={1.8} />
+      <primitive object={scene} rotation={[0, -0.25, 0]} scale={2} />
     </Center>
   );
 }
@@ -62,7 +62,7 @@ export function CustomSketchfabViewer() {
 
     const fallback = window.setTimeout(() => {
       setSplashComplete(true);
-    }, 4000);
+    }, 2000);
 
     return () => {
       unsubscribe();

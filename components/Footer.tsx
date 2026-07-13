@@ -34,7 +34,7 @@ export function Footer() {
               IN
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/mgdgames.ai/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -100,7 +100,7 @@ export function Footer() {
                 </a>
                 {/* Instagram */}
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/mgdgames.ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-social-icon"
@@ -122,7 +122,7 @@ export function Footer() {
                 </a>
                 {/* YouTube */}
                 <a
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/@mgdgames_ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="footer-social-icon"

@@ -226,7 +226,7 @@ export default function ContactPage() {
                 </svg>
                 <h4>EMAIL</h4>
                 <p>
-                  <a href="contact@mgdgames.ai">
+                  <a href="mailto:contact@mgdgames.ai">
                     contact@mgdgames.ai
                   </a>
                 </p>
@@ -299,7 +299,7 @@ export default function ContactPage() {
                 </a>
                 {/* Instagram */}
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/mgdgames.ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-btn"
