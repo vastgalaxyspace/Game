@@ -107,7 +107,11 @@ function ShowcaseCard({
         transition: "opacity 420ms ease, transform 420ms ease",
       }}
     >
-      <div ref={cardRef} className={`sc-card sc-card--${card.glow}`}>
+      <div
+        ref={cardRef}
+        className={`sc-card sc-card--${card.glow}`}
+        data-cursor={card.type === "video" ? "PLAY" : "VIEW"}
+      >
         <div
           className="sc-card__media-wrap"
           style={{

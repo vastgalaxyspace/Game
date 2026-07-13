@@ -5,6 +5,9 @@ import { Footer } from "@/components/Footer";
 import Link from "next/link";
 import { Suspense } from "react";
 import { AnimatedStat } from "@/components/AnimatedStat";
+import { Reveal } from "@/components/interactive/Reveal";
+import { Marquee } from "@/components/interactive/Marquee";
+import { smoothScrollTo } from "@/lib/scrollState";
 
 /* Lazy-load heavy components so they don't block initial render */
 const CustomSketchfabViewer = dynamic(
@@ -22,14 +25,14 @@ const ShowcaseReel = dynamic(
 
 export default function Home() {
   const scrollToWork = () => {
-    document.getElementById("showcase")?.scrollIntoView({ behavior: "smooth" });
+    smoothScrollTo("#showcase");
   };
 
   return (
     <div className="home-page">
       {/* ─── HERO ─── */}
       <section className="hero-section">
-        <div className="scene-canvas !pointer-events-auto">
+        <div className="scene-canvas !pointer-events-auto" data-cursor="DRAG">
           <div className="relative h-full w-full overflow-hidden opacity-[0.92] bg-[radial-gradient(circle_at_70%_45%,rgba(255,48,64,0.26),transparent_36%),radial-gradient(circle_at_54%_52%,rgba(255,255,255,0.08),transparent_30%),#07080c]">
             <Suspense
               fallback={
@@ -42,31 +45,46 @@ export default function Home() {
         </div>
 
         <div className="hero-copy">
-          <p className="hero-kicker">Blender + Unity Studio</p>
+          <Reveal variant="fade" as="p" className="hero-kicker">
+            Blender + Unity Studio
+          </Reveal>
           <h1>
-            <span>WE BUILD</span>
-            <span className="text-red block">
-              WORLDS
-            </span>
-            <span>IN 3D.</span>
+            <Reveal as="span" variant="line">
+              <span>WE BUILD</span>
+            </Reveal>
+            <Reveal as="span" variant="line" delay={0.12}>
+              <span className="text-red block">WORLDS</span>
+            </Reveal>
+            <Reveal as="span" variant="line" delay={0.24}>
+              <span>IN 3D.</span>
+            </Reveal>
           </h1>
-          <p className="!max-w-[400px]">
+          <Reveal variant="fade" delay={0.35} as="p" className="!max-w-[400px]">
             Blender + Unity powered studio crafting games, AR/VR apps,
             simulations, and interactive 3D experiences.
-          </p>
-          <div className="hero-actions">
-            <button className="button button-primary" onClick={scrollToWork}>
+          </Reveal>
+          <Reveal variant="fade" delay={0.5} className="hero-actions">
+            <button
+              className="button button-primary"
+              onClick={scrollToWork}
+              data-cursor="GO"
+            >
               See Our Work
             </button>
-            <Link className="button button-secondary" href="/services">
+            <Link
+              className="button button-secondary"
+              href="/services"
+              data-cursor="VIEW"
+            >
               What We Do
             </Link>
-          </div>
+          </Reveal>
         </div>
 
         <a
           className="scroll-cue cursor-pointer"
           onClick={scrollToWork}
+          data-cursor="DOWN"
         >
           <span aria-hidden="true" />
           <strong>SCROLL TO EXPLORE</strong>
@@ -90,11 +108,32 @@ export default function Home() {
         <ShowcaseReel />
       </Suspense>
 
+      {/* ─── MARQUEE STRIP ─── */}
+      <div className="marquee-strip">
+        <Marquee speed={1}>
+          {[
+            { title: "GAME DEVELOPMENT", label: "( Unity )" },
+            { title: "AR / VR", label: "( Immersive )" },
+            { title: "PRODUCT VISUALIZATION", label: "( Real-time 3D )" },
+            { title: "SIMULATIONS", label: "( Blender )" },
+          ].map((item) => (
+            <span key={item.title} className="marquee-block">
+              <span className="marquee-item">{item.title}</span>
+              <span className="marquee-label">{item.label}</span>
+            </span>
+          ))}
+        </Marquee>
+      </div>
+
       {/* ─── WHAT WE DO ─── */}
       <section className="content-section !bg-surface">
         <div className="section-heading">
-          <p className="section-kicker">What We Do</p>
-          <h2 className="section-title">OUR CORE EXPERTISE</h2>
+          <Reveal variant="fade" as="p" className="section-kicker">
+            What We Do
+          </Reveal>
+          <Reveal variant="words" as="h2" className="section-title">
+            OUR CORE EXPERTISE
+          </Reveal>
         </div>
 
         <div className="home-expertise-grid">
@@ -115,17 +154,19 @@ export default function Home() {
               link: "/services",
             },
           ].map((card, i) => (
-            <div
-              key={card.title}
-              className="expertise-card"
-              style={{ transform: `translateY(${i * 20}px)` }}
-            >
-              <h3>{card.title}</h3>
-              <p>{card.desc}</p>
-              <Link href={card.link} className="expertise-link">
-                Learn More →
-              </Link>
-            </div>
+            <Reveal variant="fade" delay={i * 0.12} key={card.title}>
+              <div
+                className="expertise-card"
+                style={{ transform: `translateY(${i * 20}px)` }}
+                data-cursor="VIEW"
+              >
+                <h3>{card.title}</h3>
+                <p>{card.desc}</p>
+                <Link href={card.link} className="expertise-link">
+                  Learn More →
+                </Link>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -187,21 +228,31 @@ export default function Home() {
       <section className="content-section !bg-surface">
         <div className="why-grid">
           <div>
-            <p className="section-kicker !m-0 !mb-4">
+            <Reveal variant="fade" as="p" className="section-kicker !m-0 !mb-4">
               Why Mukta
-            </p>
+            </Reveal>
             <h2 className="m-0 mb-6 text-[clamp(2rem,4vw,3rem)] font-[950] text-text-primary">
-              BLENDER + UNITY.
-              <br />
-              <span className="text-accent">END TO END.</span>
+              <Reveal as="span" variant="line">
+                <span>BLENDER + UNITY.</span>
+              </Reveal>
+              <Reveal as="span" variant="line" delay={0.12}>
+                <span className="text-accent">END TO END.</span>
+              </Reveal>
             </h2>
-            <p className="mb-8 text-text-secondary leading-[1.7]">
+            <Reveal
+              variant="fade"
+              delay={0.2}
+              as="p"
+              className="mb-8 text-text-secondary leading-[1.7]"
+            >
               From concept art in Blender to a fully interactive Unity build — we
               handle the complete pipeline. No handoffs, no gaps, no surprises.
-            </p>
-            <Link href="/about" className="button button-primary">
-              About Us →
-            </Link>
+            </Reveal>
+            <Reveal variant="fade" delay={0.3}>
+              <Link href="/about" className="button button-primary" data-cursor="GO">
+                About Us →
+              </Link>
+            </Reveal>
           </div>
           <div className="why-list">
             {[
@@ -221,11 +272,13 @@ export default function Home() {
                 title: "Post-Launch Support",
                 desc: "Updates, optimization, and feature additions.",
               },
-            ].map((item) => (
-              <div key={item.title} className="why-item">
-                <h4>{item.title}</h4>
-                <p>{item.desc}</p>
-              </div>
+            ].map((item, i) => (
+              <Reveal variant="fade" delay={i * 0.08} key={item.title}>
+                <div className="why-item">
+                  <h4>{item.title}</h4>
+                  <p>{item.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -234,8 +287,12 @@ export default function Home() {
       {/* ─── TESTIMONIALS ─── */}
       <section className="content-section">
         <div className="section-heading">
-          <p className="section-kicker">Testimonials</p>
-          <h2 className="section-title">WHAT CLIENTS SAY</h2>
+          <Reveal variant="fade" as="p" className="section-kicker">
+            Testimonials
+          </Reveal>
+          <Reveal variant="words" as="h2" className="section-title">
+            WHAT CLIENTS SAY
+          </Reveal>
         </div>
         <div className="testimonial-grid">
           {[
@@ -258,8 +315,8 @@ export default function Home() {
               role: "Pixelhunters (Dubai)",
             },
           ].map((t, i) => (
+            <Reveal variant="fade" delay={i * 0.12} key={t.name}>
             <div
-              key={t.name}
               className="testimonial-card"
               style={{ transform: `translateY(${i * 30}px)` }}
             >
@@ -289,6 +346,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -296,12 +354,17 @@ export default function Home() {
       {/* ─── CTA ─── */}
       <section className="cta-banner home-cta">
         <div>
-          <h2>READY TO BUILD YOUR WORLD?</h2>
-          <p>Tell us your idea. We make it real in 3D.</p>
+          <Reveal variant="words" as="h2">
+            READY TO BUILD YOUR WORLD?
+          </Reveal>
+          <Reveal variant="fade" delay={0.25} as="p">
+            Tell us your idea. We make it real in 3D.
+          </Reveal>
         </div>
         <Link
           href="/contact"
           className="button bg-bg-dark text-white"
+          data-cursor="START"
         >
           START A PROJECT →
         </Link>

@@ -14,6 +14,7 @@ export function SplashScreen() {
   const isHomePage = pathname === "/";
 
   const [showText, setShowText] = useState(false);
+  const [counter, setCounter] = useState(0);
   const [showSubText, setShowSubText] = useState(false);
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
   const [heroModelReady, setHeroModelReady] = useState(false);
@@ -53,6 +54,23 @@ export function SplashScreen() {
       clearTimeout(t2);
       clearTimeout(t3);
     };
+  }, [shouldSkip]);
+
+  // Loader counter [00] → [99] over the minimum splash duration (nudot-style).
+  useEffect(() => {
+    if (shouldSkip) return;
+
+    const start = performance.now();
+    let rafId = 0;
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / MIN_SPLASH_DURATION_MS, 1);
+      // ease-out so it rushes early and crawls near the end
+      const eased = 1 - Math.pow(1 - t, 3);
+      setCounter(Math.min(99, Math.floor(eased * 100)));
+      if (t < 1) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, [shouldSkip]);
 
   // Fade out once minimum time + optimized model loaded.
@@ -115,6 +133,11 @@ export function SplashScreen() {
         <p className={`splash-fullname ${showSubText ? "splash-visible" : ""}`}>
           MUKTA GAME &amp; DEVELOPMENT
         </p>
+      </div>
+
+      <div className="splash-meta">Blender / Unity / 3D</div>
+      <div className="splash-counter">
+        [<em>{String(isFading ? 100 : counter).padStart(2, "0")}</em>]
       </div>
     </div>
   );
