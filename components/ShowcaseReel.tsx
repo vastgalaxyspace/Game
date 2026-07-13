@@ -160,7 +160,7 @@ function ShowcaseCard({
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{ marginRight: "0.5rem", verticalAlign: "middle" }}
+              className="mr-2 align-middle"
             >
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
@@ -174,7 +174,7 @@ function ShowcaseCard({
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              style={{ marginRight: "0.5rem", verticalAlign: "middle" }}
+              className="mr-2 align-middle"
             >
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
               <circle cx="8.5" cy="8.5" r="1.5" />

@@ -3,11 +3,7 @@
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Center, Html, OrbitControls, useGLTF } from "@react-three/drei";
-
-type SplashWindow = Window & {
-  __muktaHeroModelReady?: boolean;
-  __muktaSplashComplete?: boolean;
-};
+import { heroModelReadySignal, splashCompleteSignal } from "@/lib/heroSignals";
 
 const HERO_MODEL_PATH = "/nissan_fairlady_z_s30240z_1978.meshopt.glb";
 
@@ -15,9 +11,7 @@ function Model() {
   const { scene } = useGLTF(HERO_MODEL_PATH);
 
   useEffect(() => {
-    const splashWindow = window as SplashWindow;
-    splashWindow.__muktaHeroModelReady = true;
-    window.dispatchEvent(new Event("mukta:hero-model-ready"));
+    heroModelReadySignal.notify();
   }, []);
 
   return (
@@ -52,25 +46,26 @@ function FrameInvalidator() {
 export function CustomSketchfabViewer() {
   const viewerRef = useRef<HTMLDivElement>(null);
   const [isHeroVisible, setIsHeroVisible] = useState(true);
-  const [splashComplete, setSplashComplete] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-
-    return Boolean((window as SplashWindow).__muktaSplashComplete);
-  });
+  const [splashComplete, setSplashComplete] = useState(() =>
+    splashCompleteSignal.get()
+  );
 
   useEffect(() => {
-    const handleSplashComplete = () => setSplashComplete(true);
+    if (splashCompleteSignal.get()) {
+      setSplashComplete(true);
+      return;
+    }
 
-    window.addEventListener("mukta:splash-complete", handleSplashComplete);
+    const unsubscribe = splashCompleteSignal.subscribe(() =>
+      setSplashComplete(true)
+    );
 
     const fallback = window.setTimeout(() => {
       setSplashComplete(true);
     }, 4000);
 
     return () => {
-      window.removeEventListener("mukta:splash-complete", handleSplashComplete);
+      unsubscribe();
       window.clearTimeout(fallback);
     };
   }, []);
@@ -96,13 +91,7 @@ export function CustomSketchfabViewer() {
   return (
     <div
       ref={viewerRef}
-      style={{
-        width: "100%",
-        height: "100%",
-        position: "relative",
-        cursor: "grab",
-        background: "transparent",
-      }}
+      className="relative h-full w-full cursor-grab bg-transparent"
     >
       <Canvas
         dpr={[0.6, 1]}

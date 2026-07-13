@@ -75,7 +75,7 @@ export function Footer() {
           <h3>Stay Updated</h3>
           <p>Get the latest Updates of our projects and 3D insights.</p>
 
-          <div className="social-grid" style={{ gap: '1.25rem', alignItems: 'center' }}>
+          <div className="social-grid items-center !gap-5">
                 {/* LinkedIn */}
                 <a
                   href="https://linkedin.com"
@@ -151,7 +151,7 @@ export function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="footer-bottom" style={{ justifyContent: 'center' }}>
+      <div className="footer-bottom !justify-center">
         <span>© 2026 Mukta Game &amp; Development. All rights reserved.</span>
         
       </div>

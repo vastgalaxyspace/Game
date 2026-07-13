@@ -13,15 +13,7 @@ export function AboutModelViewer() {
   const controlsRef = useRef<any>(null);
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        position: "relative",
-        cursor: "grab",
-        background: "transparent",
-      }}
-    >
+    <div className="relative h-full w-full cursor-grab bg-transparent">
       <Canvas
         shadows
         dpr={[1, 2]}

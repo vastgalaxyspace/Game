@@ -169,7 +169,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* ━━━ HERO ━━━ */}
-      <section className="page-hero" style={{ background: "var(--bg-dark)" }}>
+      <section className="page-hero !bg-bg-dark">
         <p className="section-kicker">OUR SERVICES</p>
         <h1
           className="section-title"
@@ -184,10 +184,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ━━━ SERVICES DETAIL GRID ━━━ */}
-      <section
-        className="content-section"
-        style={{ background: "var(--surface)" }}
-      >
+      <section className="content-section !bg-surface">
         <div className="services-detail-grid">
           {services.map((s) => (
             <div className="services-detail-card" key={s.num}>
@@ -206,10 +203,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ━━━ TECH STACK ━━━ */}
-      <section
-        className="content-section"
-        style={{ background: "var(--bg-dark)" }}
-      >
+      <section className="content-section">
         <p className="section-kicker">OUR TOOLKIT</p>
         <h2 className="section-title">
           POWERED BY THE <span className="gradient-text">BEST</span>
@@ -241,10 +235,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ━━━ PROCESS TIMELINE ━━━ */}
-      <section
-        className="content-section"
-        style={{ background: "var(--surface)" }}
-      >
+      <section className="content-section !bg-surface">
         <p className="section-kicker">OUR PROCESS</p>
         <h2 className="section-title">
           FROM IDEA TO <span className="gradient-text">LAUNCH</span>
@@ -262,10 +253,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ━━━ CTA ━━━ */}
-      <section
-        className="content-section"
-        style={{ background: "var(--bg-dark)" }}
-      >
+      <section className="content-section">
         <div className="cta-banner">
           <h2 className="section-title">
             HAVE A PROJECT IN <span className="gradient-text">MIND?</span>

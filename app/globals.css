@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
+/* Tailwind — preflight is disabled in tailwind.config.ts so these layer on top
+   of the hand-written styles below without resetting them. `base` is still
+   included for CSS-variable/theme registration; the bulk is `components` +
+   `utilities`. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ═══════════════════════════════════════════
    OBSIDIAN EMBER — Design Tokens
    ═══════════════════════════════════════════ */

@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useProgress } from "@react-three/drei";
 import { usePathname } from "next/navigation";
+import { heroModelReadySignal, splashCompleteSignal } from "@/lib/heroSignals";
 
 const SPLASH_FADE_DURATION_MS = 900;
 const MIN_SPLASH_DURATION_MS = 2500;
@@ -28,17 +29,16 @@ export function SplashScreen() {
       return;
     }
 
-    const splashWindow = window as Window & { __muktaHeroModelReady?: boolean };
-
-    if (splashWindow.__muktaHeroModelReady) {
+    if (heroModelReadySignal.get()) {
       setHeroModelReady(true);
+      return;
     }
 
-    const handleHeroModelReady = () => setHeroModelReady(true);
-    window.addEventListener("mukta:hero-model-ready", handleHeroModelReady);
+    const unsubscribe = heroModelReadySignal.subscribe(() =>
+      setHeroModelReady(true)
+    );
 
-    return () =>
-      window.removeEventListener("mukta:hero-model-ready", handleHeroModelReady);
+    return unsubscribe;
   }, [shouldSkip]);
 
   // Timed text reveals start from component mount (video autoplays immediately).
@@ -60,8 +60,7 @@ export function SplashScreen() {
     if (isFading) return;
     setIsFading(true);
     const timeout = setTimeout(() => {
-      (window as Window & { __muktaSplashComplete?: boolean }).__muktaSplashComplete = true;
-      window.dispatchEvent(new Event("mukta:splash-complete"));
+      splashCompleteSignal.notify();
       setIsRemoved(true);
     }, SPLASH_FADE_DURATION_MS);
     return () => clearTimeout(timeout);

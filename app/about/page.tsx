@@ -163,15 +163,12 @@ export default function AboutPage() {
       </section>
 
       {/* ── 2. OUR STORY + 3D MODEL ──────────────────────── */}
-      <section
-        className="content-section"
-        style={{ background: "var(--bg-dark)" }}
-      >
+      <section className="content-section">
         <div className="about-story">
           <div className="about-story-text">
             <h2>
               FROM PASSION TO{" "}
-              <span style={{ color: "var(--accent)" }}>PIXELS</span>
+              <span className="text-accent">PIXELS</span>
             </h2>
             <p>
               Mukta Game &amp; Development was born from a shared obsession with
@@ -199,10 +196,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 3. MISSION & VISION ──────────────────────────── */}
-      <section
-        className="content-section"
-        style={{ background: "var(--surface)" }}
-      >
+      <section className="content-section !bg-surface">
         <span className="section-kicker">OUR PURPOSE</span>
         <h2 className="section-title">MISSION &amp; VISION</h2>
 
@@ -229,10 +223,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 4. PROCESS — SCROLLING TIMELINE ──────────────── */}
-      <section
-        className="content-section"
-        style={{ background: "var(--bg-dark)" }}
-      >
+      <section className="content-section">
         <div className="section-heading">
           <p>PROCESS</p>
           <h2>HOW WE WORK</h2>
@@ -271,10 +262,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 5. TECH STACK — ANIMATED RINGS ────────────────── */}
-      <section
-        className="content-section"
-        style={{ background: "var(--surface)" }}
-      >
+      <section className="content-section !bg-surface">
         <div className="section-heading">
           <p>TECHNOLOGY</p>
           <h2>OUR TOOLKIT</h2>
@@ -289,10 +277,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 6. BLENDER SHOWCASE ─────────────────────────── */}
-      <section
-        className="content-section"
-        style={{ background: "var(--bg-dark)" }}
-      >
+      <section className="content-section">
         <div className="section-heading">
           <p>SHOWCASE</p>
           <h2>BLENDER MODELS</h2>

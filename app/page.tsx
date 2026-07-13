@@ -29,19 +29,8 @@ export default function Home() {
     <div className="home-page">
       {/* ─── HERO ─── */}
       <section className="hero-section">
-        <div className="scene-canvas" style={{ width: "100%", height: "100%", pointerEvents: "auto" }}>
-          <div
-            className="sketchfab-embed-wrapper"
-            style={{
-              width: "100%",
-              height: "100%",
-              opacity: 0.92,
-              background:
-                "radial-gradient(circle at 70% 45%, rgba(255, 48, 64, 0.26), transparent 36%), radial-gradient(circle at 54% 52%, rgba(255, 255, 255, 0.08), transparent 30%), #07080c",
-              overflow: "hidden",
-              position: "relative",
-            }}
-          >
+        <div className="scene-canvas !pointer-events-auto">
+          <div className="relative h-full w-full overflow-hidden opacity-[0.92] bg-[radial-gradient(circle_at_70%_45%,rgba(255,48,64,0.26),transparent_36%),radial-gradient(circle_at_54%_52%,rgba(255,255,255,0.08),transparent_30%),#07080c]">
             <Suspense
               fallback={
                 <div className="hero-model-fallback">Loading 3D car</div>
@@ -56,12 +45,12 @@ export default function Home() {
           <p className="hero-kicker">Blender + Unity Studio</p>
           <h1>
             <span>WE BUILD</span>
-            <span className="text-red" style={{ display: "block" }}>
+            <span className="text-red block">
               WORLDS
             </span>
             <span>IN 3D.</span>
           </h1>
-          <p style={{ maxWidth: "400px" }}>
+          <p className="!max-w-[400px]">
             Blender + Unity powered studio crafting games, AR/VR apps,
             simulations, and interactive 3D experiences.
           </p>
@@ -76,9 +65,8 @@ export default function Home() {
         </div>
 
         <a
-          className="scroll-cue"
+          className="scroll-cue cursor-pointer"
           onClick={scrollToWork}
-          style={{ cursor: "pointer" }}
         >
           <span aria-hidden="true" />
           <strong>SCROLL TO EXPLORE</strong>
@@ -103,8 +91,8 @@ export default function Home() {
       </Suspense>
 
       {/* ─── WHAT WE DO ─── */}
-      <section className="content-section" style={{ background: "var(--surface)" }}>
-        <div className="section-heading" style={{ textAlign: "center" }}>
+      <section className="content-section !bg-surface">
+        <div className="section-heading">
           <p className="section-kicker">What We Do</p>
           <h2 className="section-title">OUR CORE EXPERTISE</h2>
         </div>
@@ -196,34 +184,18 @@ export default function Home() {
       </section> */}
 
       {/* ─── WHY CHOOSE US ─── */}
-      <section
-        className="content-section"
-        style={{ background: "var(--surface)" }}
-      >
+      <section className="content-section !bg-surface">
         <div className="why-grid">
           <div>
-            <p className="section-kicker" style={{ margin: "0 0 1rem" }}>
+            <p className="section-kicker !m-0 !mb-4">
               Why Mukta
             </p>
-            <h2
-              style={{
-                margin: "0 0 1.5rem",
-                fontSize: "clamp(2rem,4vw,3rem)",
-                fontWeight: 950,
-                color: "var(--text-primary)",
-              }}
-            >
+            <h2 className="m-0 mb-6 text-[clamp(2rem,4vw,3rem)] font-[950] text-text-primary">
               BLENDER + UNITY.
               <br />
-              <span style={{ color: "var(--accent)" }}>END TO END.</span>
+              <span className="text-accent">END TO END.</span>
             </h2>
-            <p
-              style={{
-                color: "var(--text-secondary)",
-                lineHeight: 1.7,
-                marginBottom: "2rem",
-              }}
-            >
+            <p className="mb-8 text-text-secondary leading-[1.7]">
               From concept art in Blender to a fully interactive Unity build — we
               handle the complete pipeline. No handoffs, no gaps, no surprises.
             </p>
@@ -260,11 +232,8 @@ export default function Home() {
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <section
-        className="content-section"
-        style={{ background: "var(--bg-dark)" }}
-      >
-        <div className="section-heading" style={{ textAlign: "center" }}>
+      <section className="content-section">
+        <div className="section-heading">
           <p className="section-kicker">Testimonials</p>
           <h2 className="section-title">WHAT CLIENTS SAY</h2>
         </div>
@@ -299,7 +268,7 @@ export default function Home() {
                 height="32"
                 viewBox="0 0 24 24"
                 fill="none"
-                style={{ marginBottom: "1rem", opacity: 0.25 }}
+                className="mb-4 opacity-25"
               >
                 <path
                   d="M11 7H7a4 4 0 0 0-4 4v1h4a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5a6 6 0 0 1 6-6h3v2Zm11 0h-4a4 4 0 0 0-4 4v1h4a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-5a6 6 0 0 1 6-6h3v2Z"
@@ -332,8 +301,7 @@ export default function Home() {
         </div>
         <Link
           href="/contact"
-          className="button"
-          style={{ background: "var(--bg-dark)", color: "#fff" }}
+          className="button bg-bg-dark text-white"
         >
           START A PROJECT →
         </Link>

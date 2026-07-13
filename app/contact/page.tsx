@@ -74,20 +74,11 @@ export default function ContactPage() {
           </p>
         </section>
         {/* ── Contact Layout ── */}
-        <section
-          className="content-section"
-          style={{ background: "transparent" }}
-        >
+        <section className="content-section !bg-transparent">
           <div className="contact-layout">
             {/* ── Left: Form ── */}
             <div className="contact-form contact-glass-card">
-              <h3
-                style={{
-                  color: "var(--text-primary)",
-                  fontWeight: 800,
-                  marginBottom: "1.5rem",
-                }}
-              >
+              <h3 className="mb-6 font-extrabold text-text-primary">
                 Send Us a Message
               </h3>
               <form className="form-grid" onSubmit={handleSubmit}>
@@ -155,7 +146,7 @@ export default function ContactPage() {
                   </select>
                 </div>
                 {/* Budget – full width */}
-                <div className="form-group" style={{ gridColumn: "1 / -1" }}>
+                <div className="form-group col-span-full">
                   <label htmlFor="budget">Budget Range</label>
                   <select
                     id="budget"
@@ -172,7 +163,7 @@ export default function ContactPage() {
                   </select>
                 </div>
                 {/* Message – full width */}
-                <div className="form-group" style={{ gridColumn: "1 / -1" }}>
+                <div className="form-group col-span-full">
                   <label htmlFor="message">Project Details *</label>
                   <textarea
                     id="message"
@@ -188,7 +179,7 @@ export default function ContactPage() {
                   {isSubmitting ? (
                     <>
                       <svg
-                        className="spinner"
+                        className="animate-spin mr-2"
                         width="18"
                         height="18"
                         viewBox="0 0 24 24"
@@ -197,7 +188,6 @@ export default function ContactPage() {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        style={{ animation: 'spin 1s linear infinite', marginRight: '8px' }}
                       >
                         <path d="M21 12a9 9 0 1 1-6.219-8.56" />
                       </svg>
@@ -208,7 +198,10 @@ export default function ContactPage() {
                   )}
                 </button>
                 {status.message && (
-                  <div style={{ marginTop: "1rem", color: status.type === "success" ? "#4ade80" : "#ff4d4d", fontWeight: "bold" }}>
+                  <div
+                    className="mt-4 font-bold"
+                    style={{ color: status.type === "success" ? "#4ade80" : "#ff4d4d" }}
+                  >
                     {status.message}
                   </div>
                 )}
@@ -276,14 +269,7 @@ export default function ContactPage() {
                 <p>India</p>
               </div>
               {/* Social */}
-              <h4
-                style={{
-                  color: "var(--accent-primary)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.12em",
-                  marginTop: "1.5rem",
-                }}
-              >
+              <h4 className="mt-6 uppercase tracking-[0.12em]">
                 Follow Us
               </h4>
               <div className="social-grid">

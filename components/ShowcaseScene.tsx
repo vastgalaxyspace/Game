@@ -58,7 +58,7 @@ export function ShowcaseScene({ autoRotate, animationMode, zoomSignal }: Showcas
 function LoadingLabel() {
   return (
     <Html center>
-      <div style={{ color: "#f4f3ef", fontSize: "0.95rem" }}>Loading model...</div>
+      <div className="text-[0.95rem] text-[#f4f3ef]">Loading model...</div>
     </Html>
   );
 }
