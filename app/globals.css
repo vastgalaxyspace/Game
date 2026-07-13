@@ -3521,10 +3521,21 @@ textarea {
   }
 
   .hero-copy {
-    top: clamp(7.5rem, 18svh, 9rem);
+    position: relative;
+    top: auto;
+    right: auto;
     left: 1rem;
     bottom: auto;
-    padding: 0;
+    padding: clamp(7.5rem, 18svh, 9rem) 0 1.5rem;
+  }
+
+  .hero-section {
+    min-height: auto;
+  }
+
+  .hero-section .scene-canvas,
+  .hero-section .scene-canvas canvas {
+    touch-action: pan-y !important;
   }
 
   .hero-kicker,
